@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WS.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WS.WebApi.Controllers.AspNetClientController.Get">
+            <summary>
+            Retorna todos os clientes cadastrados na base
+            </summary>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetClientController.Get(System.Int32)">
+            <summary>
+            Retorna um cliente consultado pelo ID
+            </summary>
+            <param name="id" example="1">Id do cliente</param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetClientController.Post(WS.Core.Shared.ModelViews.AspNetClientNovo)">
+            <summary>
+            Inserir um novo cliente
+            </summary>
+            <param name="aspNetClientNovo"></param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetClientController.Put(WS.Core.Shared.ModelViews.AspNetClientAlterar)">
+            <summary>
+             Alterar um cliente existente
+            </summary>
+            <param name="aspNetClientAlterar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetClientController.Delete(System.Int32)">
+            <summary>
+            Excluir um cliente existente
+            </summary>
+            <param name="id" example="1">Id do cliente</param>
+            <remarks>Ao excluir um cliente o mesmo perderá todos os acessos aos serviços do software,
+            use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetModuleController.Get">
+            <summary>
+            Retorna todos os Modulos cadastrados na base
+            </summary>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetModuleController.Get(System.Int32)">
+            <summary>
+            Retorna um Modulo consultado pelo ID
+            </summary>
+            <param name="id" example="1">Id do Modulo</param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetModuleController.Post(WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo)">
+            <summary>
+            Inserir um novo Modulo
+            </summary>
+            <param name="aspNetModuleNovo"></param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetModuleController.Put(WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar)">
+            <summary>
+             Alterar um Modulo existente
+            </summary>
+            <param name="aspNetModuleAlterar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetModuleController.Delete(System.Int32)">
+            <summary>
+            Excluir um Modulee existente
+            </summary>
+            <param name="id" example="1">Id do Modulee</param>
+            <remarks>Ao excluir um Modulo o mesmo será replicado aos serviços do software,
+            use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
+        </member>
+    </members>
+</doc>
