@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WS.Core.Shared</name>
+    </assembly>
+    <members>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.Vencimento">
+            <summary>
+            Vencimento do acesso do ao modulo do cliente
+            </summary>
+            <example>2021-01-01</example>>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetClientAlterar">
+            <summary>
+            Objeto utilizado para alteração do cliente para utilizar as ferramentas
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientAlterar.ClientId">
+            <summary>
+            ID do cliente
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetClientNovo">
+            <summary>
+            Objeto utilizado para inserção de um novo cliente para utilizar as ferramentas
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Orgao">
+            <summary>
+            Orgao autuador do cliente
+            </summary>
+            <example>7075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.RazaoSocial">
+            <summary>
+            Razao Social do cliente 
+            </summary>
+            <example>São Bernardo do Campo</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Server">
+            <summary>
+            Servidor a qual a aplicação deve olhar para buscar os dados do cliente 
+            Sever: IP ou SERVENAME
+            </summary>
+            <example>192.168.0.1 </example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Banco">
+            <summary>
+            Banco de dados a qual a aplicação deve olhar para buscar os dados do cliente 
+            </summary>
+            <example>DBGM07075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Vencimento">
+            <summary>
+            Vencimento do acesso do cliente - interrupção do uso da aplicação total
+            </summary>
+            <example>2021-01-01</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.aspNetClientModules">
+            <summary>
+            Lista de Modulos disponiveis do cliente
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.ClientId">
+            <summary>
+            Identificador do Cliente
+            </summary>
+            <example>7075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Orgao">
+            <summary>
+            Orgao autuador do cliente
+            </summary>
+            <example>7075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.RazaoSocial">
+            <summary>
+            Razao Social do cliente 
+            </summary>
+            <example>São Bernardo do Campo</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Server">
+            <summary>
+            Servidor a qual a aplicação deve olhar para buscar os dados do cliente 
+            Sever: IP ou SERVENAME
+            </summary>
+            <example>192.168.0.1 </example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Banco">
+            <summary>
+            Banco de dados a qual a aplicação deve olhar para buscar os dados do cliente 
+            </summary>
+            <example>DBGM07075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Vencimento">
+            <summary>
+            Vencimento do acesso do cliente - interrupção do uso da aplicação total
+            </summary>
+            <example>2021-01-01</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.aspNetClientModules">
+            <summary>
+            Lista de Modulos disponiveis do cliente
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuAlterar.MenuId">
+            <summary>
+            ID do Menu
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuNovo.Menu">
+            <summary>
+            Titulo do Menu
+            </summary>
+            <example>Laudos</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuNovo.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuView.MenuId">
+            <summary>
+            ID do Menu
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuView.Menu">
+            <summary>
+            Titulo do Menu
+            </summary>
+            <example>Laudos</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuView.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar">
+            <summary>
+            Objeto utilizado para alteração de um modulo existente
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo">
+            <summary>
+            Objeto utilizado para inserção de um novo modulo as ferramentas
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Ordem">
+            <summary>
+            Sequencial do Modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
+        </member>
+    </members>
+</doc>
