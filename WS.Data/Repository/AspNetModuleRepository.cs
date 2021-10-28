@@ -78,7 +78,7 @@ namespace WS.Data.Repository
                 else
                 {
                     menuConsultado.Menu = menu.Menu;
-                    menuConsultado.Ordem = menu.Ordem; 
+                    menuConsultado.Ordem = menu.Ordem;
                 }
             }
 
