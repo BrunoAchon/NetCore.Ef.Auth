@@ -2,6 +2,7 @@
 using WS.Core.Domain;
 using WS.Core.Shared.ModelViews;
 using WS.Core.Shared.ModelViews.AspNetClient;
+using WS.Core.Shared.ModelViews.AspNetClientMenu;
 using WS.Core.Shared.ModelViews.AspNetClientModule;
 
 namespace WS.Mananger.Mappings.Novo
@@ -14,6 +15,7 @@ namespace WS.Mananger.Mappings.Novo
             CreateMap<AspNetClientNovo, AspNetClient>().ForMember(d => d.Vencimento, o => o.MapFrom(x => x.Vencimento.Date));
 
             CreateMap<AspNetClientModule, AspNetClientModuleLink>().ReverseMap();
+            CreateMap<AspNetClientMenu, AspNetClientMenuLink>().ReverseMap();
         }
     }
 }

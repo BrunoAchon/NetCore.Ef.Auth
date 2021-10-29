@@ -11,5 +11,6 @@ namespace WS.Mananger.Interfaces
         Task<IEnumerable<AspNetModule>> GetAspNetModulesAsync();
         Task<AspNetModule> InsertAspNetModule(AspNetModule aspNetModule);
         Task<AspNetModule> UpdateAspNetModule(AspNetModule aspNetModule);
+        Task<bool> ExistsAsync(int id);
     }
 }

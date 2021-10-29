@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WS.Data.Context;
 
 namespace WS.Data.Migrations
 {
     [DbContext(typeof(WsContext))]
-    partial class WsContextModelSnapshot : ModelSnapshot
+    [Migration("20211029134804_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace WS.Data.Migrations
                     b.Property<DateTime?>("Vencimento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2025, 10, 29, 10, 55, 17, 266, DateTimeKind.Local).AddTicks(206));
+                        .HasDefaultValue(new DateTime(2025, 10, 29, 10, 48, 4, 426, DateTimeKind.Local).AddTicks(2043));
 
                     b.HasKey("ClientId");
 
@@ -63,22 +65,22 @@ namespace WS.Data.Migrations
                     b.Property<int>("MenuId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Editar")
+                    b.Property<bool>("Delete")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<bool>("Excluir")
+                    b.Property<bool>("Edit")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<bool>("Exibir")
+                    b.Property<bool>("New")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<bool>("Inserir")
+                    b.Property<bool>("View")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);

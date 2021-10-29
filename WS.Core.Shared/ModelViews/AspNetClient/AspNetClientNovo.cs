@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WS.Core.Shared.ModelViews.AspNetClientMenu;
 using WS.Core.Shared.ModelViews.AspNetClientModule;
 
 namespace WS.Core.Shared.ModelViews
@@ -40,5 +41,10 @@ namespace WS.Core.Shared.ModelViews
         /// Lista de Modulos disponiveis do cliente
         /// </summary>
         public ICollection<AspNetClientModuleLink> aspNetClientModules { get; set; }
+
+        /// <summary>
+        /// Lista de Permissoes dos Menus disponiveis do cliente
+        /// </summary>
+        public ICollection<AspNetClientMenuLink> aspNetClientMenus { get; set; }
     }
 }

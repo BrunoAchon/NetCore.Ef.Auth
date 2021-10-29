@@ -12,10 +12,12 @@ namespace WS.Core.Domain
         public string Banco { get; set; }
         public DateTime? Vencimento { get; set; }    
         public virtual ICollection<AspNetClientModule> aspNetClientModules { get; set; }
+        public virtual ICollection<AspNetClientMenu> aspNetClientMenus { get; set; }
 
         public AspNetClient()
         {
             aspNetClientModules = new HashSet<AspNetClientModule>();
+            aspNetClientMenus = new HashSet<AspNetClientMenu>();
         }
     }
 }

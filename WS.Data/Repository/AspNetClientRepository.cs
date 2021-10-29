@@ -22,6 +22,8 @@ namespace WS.Data.Repository
             return await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
                 .ThenInclude(m => m.Module)
+                .Include(cme => cme.aspNetClientMenus)
+                .ThenInclude(me => me.Menu)
                 .AsNoTracking().ToListAsync();
         }
 
@@ -30,6 +32,8 @@ namespace WS.Data.Repository
             return await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
                 .ThenInclude(m => m.Module)
+                .Include(cme => cme.aspNetClientMenus)
+                .ThenInclude(me => me.Menu)
                 .AsNoTracking().SingleOrDefaultAsync(c => c.ClientId == id);
         }
         #endregion
@@ -39,6 +43,7 @@ namespace WS.Data.Repository
         {
             await _context.aspNetClients.AddAsync(aspNetClient);
             await InsertAspNetClientModules(aspNetClient);
+            await InsertAspNetClientMenus(aspNetClient);
             await _context.SaveChangesAsync();
             return aspNetClient;
         }
@@ -51,6 +56,15 @@ namespace WS.Data.Repository
                 _context.Entry(module).CurrentValues.SetValues(moduleConsultado);
             }
         }
+
+        private async Task InsertAspNetClientMenus(AspNetClient aspNetClient)
+        {
+            foreach (var menu in aspNetClient.aspNetClientMenus)
+            {
+                var menuConsultado = await _context.aspNetMenus.AsNoTracking().FirstAsync(me => me.MenuId == menu.MenuId);
+                _context.Entry(menu).CurrentValues.SetValues(menuConsultado);
+            }
+        }
         #endregion
 
         #region Update
@@ -59,6 +73,8 @@ namespace WS.Data.Repository
             var aspNetClientConsultado = await _context.aspNetClients
                                                .Include(c => c.aspNetClientModules)
                                                .ThenInclude(m => m.Module)
+                                               .Include(cme => cme.aspNetClientMenus)
+                                               .ThenInclude(me => me.Menu)
                                                .SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
             if (aspNetClientConsultado == null)
             {
@@ -67,10 +83,11 @@ namespace WS.Data.Repository
             _context.Entry(aspNetClientConsultado).CurrentValues.SetValues(aspNetClient);
 
             await UpdateAspNetClientModule(aspNetClient, aspNetClientConsultado);
+            await UpdateAspNetClientMenu(aspNetClient, aspNetClientConsultado);
+
             await _context.SaveChangesAsync();
             return aspNetClientConsultado;
         }
-
         private async Task UpdateAspNetClientModule(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado)
         {
             aspNetClientConsultado.aspNetClientModules.Clear();
@@ -82,6 +99,24 @@ namespace WS.Data.Repository
                     {
                         ModuleId = moduleConsultado.ModuleId,
                         Vencimento = module.Vencimento
+                    });
+            }
+        }
+
+        private async Task UpdateAspNetClientMenu(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado)
+        {
+            aspNetClientConsultado.aspNetClientMenus.Clear();
+            foreach (var menu in aspNetClient.aspNetClientMenus)
+            {
+                var menuConsultado = await _context.aspNetMenus.FindAsync(menu.MenuId);
+                aspNetClientConsultado.aspNetClientMenus.Add(
+                    new AspNetClientMenu
+                    {
+                        MenuId = menuConsultado.MenuId,
+                        Inserir = menu.Inserir,
+                        Exibir = menu.Exibir,
+                        Editar = menu.Editar,
+                        Excluir = menu.Excluir
                     });
             }
         }
