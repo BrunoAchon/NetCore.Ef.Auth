@@ -6,11 +6,12 @@ namespace WS.Mananger.Interfaces
 {
     public interface IAspNetModuleRepository
     {
-        Task DeleteAspNetModule(int id);
+        Task<bool> ExistsAsync(int id);
         Task<AspNetModule> GetAspNetModuleAsync(int id);
         Task<IEnumerable<AspNetModule>> GetAspNetModulesAsync();
         Task<AspNetModule> InsertAspNetModule(AspNetModule aspNetModule);
         Task<AspNetModule> UpdateAspNetModule(AspNetModule aspNetModule);
-        Task<bool> ExistsAsync(int id);
+        Task DeleteAspNetModule(int id);
+
     }
 }
