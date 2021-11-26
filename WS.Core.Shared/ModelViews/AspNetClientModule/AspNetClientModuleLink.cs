@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WS.Core.Shared.ModelViews.AspNetClient;
 using WS.Core.Shared.ModelViews.AspNetModule;
 

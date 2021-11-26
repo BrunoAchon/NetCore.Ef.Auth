@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WS.Core.Shared.ModelViews.AspNetMenu;
 
 namespace WS.Core.Shared.ModelViews.AspNetClientMenu
 {

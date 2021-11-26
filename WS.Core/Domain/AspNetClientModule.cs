@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WS.Core.Domain
 {
@@ -9,7 +10,5 @@ namespace WS.Core.Domain
         public int ModuleId { get; set; }
         public virtual AspNetModule Module { get; set; }
         public DateTime? Vencimento { get; set; }
-
-
     }
 }
