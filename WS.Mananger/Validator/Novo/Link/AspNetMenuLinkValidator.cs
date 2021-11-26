@@ -5,7 +5,7 @@ using WS.Mananger.Interfaces.Repositories;
 
 namespace WS.Mananger.Validator.Novo.Link
 {
-    public class AspNetMenuLinkValidator : AbstractValidator<AspNetClientMenuLink>
+    public class AspNetMenuLinkValidator : AbstractValidator<AspNetClientMenuLinkNovo>
     {
         private readonly IAspNetMenuRepository _repository;
         public AspNetMenuLinkValidator(IAspNetMenuRepository repository)

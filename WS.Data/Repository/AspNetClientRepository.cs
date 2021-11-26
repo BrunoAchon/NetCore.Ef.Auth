@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WS.Core.Domain;
-using WS.Core.Shared.ModelViews.AspNetClientModule;
 using WS.Data.Context;
 using WS.Mananger.Interfaces;
 
@@ -19,21 +18,19 @@ namespace WS.Data.Repository
         #region Get 
         public async Task<IEnumerable<AspNetClient>> GetAspNetClientsAsync()
         {
-            return await _context.aspNetClients
+            var aspNetClients = await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
-                .ThenInclude(m => m.Module)
-                .Include(cme => cme.aspNetClientMenus)
-                .ThenInclude(me => me.Menu)
+                 .Include(cme => cme.aspNetClientMenus)
                 .AsNoTracking().ToListAsync();
+
+            return aspNetClients;
         }
 
         public async Task<AspNetClient> GetAspNetClientAsync(int id)
         {
             return await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
-                .ThenInclude(m => m.Module)
                 .Include(cme => cme.aspNetClientMenus)
-                .ThenInclude(me => me.Menu)
                 .AsNoTracking().SingleOrDefaultAsync(c => c.ClientId == id);
         }
         #endregion
@@ -50,11 +47,13 @@ namespace WS.Data.Repository
 
         private async Task InsertAspNetClientModules(AspNetClient aspNetClient)
         {
+            //var modulesConsultados = new List<AspNetClientModule>();
             foreach (var module in aspNetClient.aspNetClientModules)
             {
                 var moduleConsultado = await _context.aspNetModules.AsNoTracking().FirstAsync(m => m.ModuleId == module.ModuleId);
                 _context.Entry(module).CurrentValues.SetValues(moduleConsultado);
             }
+            //aspNetClient.aspNetClientModules = modulesConsultados;
         }
 
         private async Task InsertAspNetClientMenus(AspNetClient aspNetClient)
@@ -72,9 +71,7 @@ namespace WS.Data.Repository
         {
             var aspNetClientConsultado = await _context.aspNetClients
                                                .Include(c => c.aspNetClientModules)
-                                               .ThenInclude(m => m.Module)
                                                .Include(cme => cme.aspNetClientMenus)
-                                               .ThenInclude(me => me.Menu)
                                                .SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
             if (aspNetClientConsultado == null)
             {

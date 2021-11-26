@@ -8,7 +8,7 @@ using WS.Mananger.Interfaces;
 
 namespace WS.Mananger.Validator.Novo.Link
 {
-    public class AspNetModuleLinkValidator : AbstractValidator<AspNetClientModuleLink>
+    public class AspNetModuleLinkValidator : AbstractValidator<AspNetClientModuleLinkNovo>
     {
         private readonly IAspNetModuleRepository _repository;
         public AspNetModuleLinkValidator(IAspNetModuleRepository repository)

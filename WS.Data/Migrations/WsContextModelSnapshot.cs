@@ -48,7 +48,7 @@ namespace WS.Data.Migrations
                     b.Property<DateTime?>("Vencimento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2025, 10, 29, 10, 55, 17, 266, DateTimeKind.Local).AddTicks(206));
+                        .HasDefaultValue(new DateTime(2025, 11, 26, 11, 20, 53, 609, DateTimeKind.Local).AddTicks(816));
 
                     b.HasKey("ClientId");
 

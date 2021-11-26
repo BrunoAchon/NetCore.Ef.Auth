@@ -10,8 +10,6 @@ namespace WS.Mananger.Mappings.Novo
         {
             CreateMap<AspNetModule, AspNetModuleView>();
             CreateMap<AspNetModuleNovo, AspNetModule>();
-            
-
         }
     }
 }
