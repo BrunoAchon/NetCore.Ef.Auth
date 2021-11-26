@@ -4,204 +4,47 @@
         <name>WS.Core.Shared</name>
     </assembly>
     <members>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkNovo.MenuId">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.MenuId">
             <summary>
             ID do Menu
             </summary>
             <example>1</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkNovo.Exibir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Exibir">
             <summary>
             Permissão de Visualização
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkNovo.Inserir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Inserir">
             <summary>
             Permissão de Inclusão
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkNovo.Editar">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Editar">
             <summary>
             Permissão de Alteração
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkNovo.Excluir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Excluir">
             <summary>
             Permissão de Deleção
             </summary>
             <example>false</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkView.MenuId">
-            <summary>
-            ID do Menu
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkView.Exibir">
-            <summary>
-            Permissão de Visualização
-            </summary>
-            <example>true</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkView.Inserir">
-            <summary>
-            Permissão de Inclusão
-            </summary>
-            <example>true</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkView.Editar">
-            <summary>
-            Permissão de Alteração
-            </summary>
-            <example>true</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLinkView.Excluir">
-            <summary>
-            Permissão de Deleção
-            </summary>
-            <example>false</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLinkNovo.ModuleId">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.ModuleId">
             <summary>
             ID do Modulo
             </summary>
             <example>1</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLinkNovo.Vencimento">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.Vencimento">
             <summary>
             Vencimento do acesso do ao modulo do cliente
             </summary>
             <example>2021-01-01</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLinkView.ModuleId">
-            <summary>
-            ID do Modulo
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLinkView.Vencimento">
-            <summary>
-            Vencimento do acesso do ao modulo do cliente
-            </summary>
-            <example>2021-01-01</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetClientModuleView.ModuleId">
-            <summary>
-            ID do Modulo
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetClientModuleView.Module">
-            <summary>
-            Titulo do Modulo
-            </summary>
-            <example>Cadastros</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetClientModuleView.ImgMenu">
-            <summary>
-            Imagem do Modulo
-            </summary>
-            <example>bi bi-table</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetClientModuleView.Ordem">
-            <summary>
-            Sequencial do Modulo (em qual ordem ele será disposto para visualização)
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar">
-            <summary>
-            Objeto utilizado para alteração de um modulo existente
-            </summary>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ModuleId">
-            <summary>
-            ID do Modulo
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Module">
-            <summary>
-            Titulo do Modulo
-            </summary>
-            <example>Cadastros</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ImgMenu">
-            <summary>
-            Imagem do Modulo
-            </summary>
-            <example>bi bi-table</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Ordem">
-            <summary>
-            Sequencial do modulo (em qual ordem ele será disposto para visualização)
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.aspNetMenus">
-            <summary>
-            Lista de menus de cada modulo
-            </summary>
-        </member>
-        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo">
-            <summary>
-            Objeto utilizado para inserção de um novo modulo as ferramentas
-            </summary>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Module">
-            <summary>
-            Titulo do Modulo
-            </summary>
-            <example>Cadastros</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.ImgMenu">
-            <summary>
-            Imagem do Modulo
-            </summary>
-            <example>bi bi-table</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Ordem">
-            <summary>
-            Sequencial do modulo (em qual ordem ele será disposto para visualização)
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.aspNetMenus">
-            <summary>
-            Lista de menus de cada modulo
-            </summary>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ModuleId">
-            <summary>
-            ID do Modulo
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Module">
-            <summary>
-            Titulo do Modulo
-            </summary>
-            <example>Cadastros</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ImgMenu">
-            <summary>
-            Imagem do Modulo
-            </summary>
-            <example>bi bi-table</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Ordem">
-            <summary>
-            Sequencial do Modulo (em qual ordem ele será disposto para visualização)
-            </summary>
-            <example>1</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.aspNetMenus">
-            <summary>
-            Lista de menus de cada modulo
-            </summary>
         </member>
         <member name="T:WS.Core.Shared.ModelViews.AspNetClientAlterar">
             <summary>
@@ -342,6 +185,97 @@
             Sequencial do modulo (em qual ordem ele será disposto para visualização)
             </summary>
             <example>1</example>>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar">
+            <summary>
+            Objeto utilizado para alteração de um modulo existente
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
+        </member>
+        <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo">
+            <summary>
+            Objeto utilizado para inserção de um novo modulo as ferramentas
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.Ordem">
+            <summary>
+            Sequencial do modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.Ordem">
+            <summary>
+            Sequencial do Modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.aspNetMenus">
+            <summary>
+            Lista de menus de cada modulo
+            </summary>
         </member>
     </members>
 </doc>
