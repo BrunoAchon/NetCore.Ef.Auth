@@ -21,7 +21,7 @@ namespace WS.WebApi
             }
             catch (Exception ew)
             {
-                Log.Fatal(ew, "Erro catastrofico.");
+                Log.Fatal(ew, "Erro catastrófico.");
                 throw;
             }
             finally
