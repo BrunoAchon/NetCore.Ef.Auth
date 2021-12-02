@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 using WS.Core.Domain;
 using WS.Data.Configuration;
+using WS.Mananger.Interfaces.Services;
 
 namespace WS.Data.Context
 {
     public class WsContext: DbContext
     {
+        public IDbConnection Connection => Database.GetDbConnection();
         public DbSet<AspNetClient> aspNetClients { get; set; }
         public DbSet<AspNetClientModule> aspNetClientModules { get; set; }
         public DbSet<AspNetClientMenu> aspNetClientMenus { get; set; }
