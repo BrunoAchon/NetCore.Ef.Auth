@@ -6,12 +6,12 @@
     <members>
         <member name="M:WS.WebApi.Controllers.AspNetClientController.Get">
             <summary>
-            Retorna todos os clientes cadastrados na base
+            Obter lista de todos os clientes
             </summary>
         </member>
         <member name="M:WS.WebApi.Controllers.AspNetClientController.Get(System.Int32)">
             <summary>
-            Retorna um cliente consultado pelo ID
+            Obter um cliente consultado pelo ID
             </summary>
             <param name="id" example="1">Id do cliente</param>
         </member>

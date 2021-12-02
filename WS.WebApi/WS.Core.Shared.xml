@@ -4,47 +4,101 @@
         <name>WS.Core.Shared</name>
     </assembly>
     <members>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.MenuId">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuNovo.MenuId">
             <summary>
             ID do Menu
             </summary>
             <example>1</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Exibir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuNovo.Exibir">
             <summary>
             Permissão de Visualização
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Inserir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuNovo.Inserir">
             <summary>
             Permissão de Inclusão
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Editar">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuNovo.Editar">
             <summary>
             Permissão de Alteração
             </summary>
             <example>true</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuLink.Excluir">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuNovo.Excluir">
             <summary>
             Permissão de Deleção
             </summary>
             <example>false</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.ModuleId">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.MenuId">
+            <summary>
+            ID do Menu
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.Exibir">
+            <summary>
+            Permissão de Visualização
+            </summary>
+            <example>true</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.Inserir">
+            <summary>
+            Permissão de Inclusão
+            </summary>
+            <example>true</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.Editar">
+            <summary>
+            Permissão de Alteração
+            </summary>
+            <example>true</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.Excluir">
+            <summary>
+            Permissão de Deleção
+            </summary>
+            <example>false</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientMenu.AspNetClientMenuView.aspNetMenu">
+            <summary>
+            Classe de Menu
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleNovo.ModuleId">
             <summary>
             ID do Modulo
             </summary>
             <example>1</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleLink.Vencimento">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleNovo.Vencimento">
             <summary>
             Vencimento do acesso do ao modulo do cliente
             </summary>
             <example>2021-01-01</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleView.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleView.Vencimento">
+            <summary>
+            Vencimento do acesso do ao modulo do cliente
+            </summary>
+            <example>2021-01-01</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleView.aspNetModule">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
         </member>
         <member name="T:WS.Core.Shared.ModelViews.AspNetClientAlterar">
             <summary>
@@ -219,6 +273,30 @@
             <summary>
             Lista de menus de cada modulo
             </summary>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleBase.ModuleId">
+            <summary>
+            ID do Modulo
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleBase.Module">
+            <summary>
+            Titulo do Modulo
+            </summary>
+            <example>Cadastros</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleBase.ImgMenu">
+            <summary>
+            Imagem do Modulo
+            </summary>
+            <example>bi bi-table</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleBase.Ordem">
+            <summary>
+            Sequencial do Modulo (em qual ordem ele será disposto para visualização)
+            </summary>
+            <example>1</example>>
         </member>
         <member name="T:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo">
             <summary>

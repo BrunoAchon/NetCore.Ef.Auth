@@ -26,7 +26,7 @@ namespace WS.WebApi.Controllers
         }
 
         /// <summary>
-        /// Retorna todos os clientes cadastrados na base
+        /// Obter lista de todos os clientes
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status200OK)]
@@ -42,7 +42,7 @@ namespace WS.WebApi.Controllers
         }
 
         /// <summary>
-        /// Retorna um cliente consultado pelo ID
+        /// Obter um cliente consultado pelo ID
         /// </summary>
         /// <param name="id" example="1">Id do cliente</param>
         [HttpGet("{id}")]

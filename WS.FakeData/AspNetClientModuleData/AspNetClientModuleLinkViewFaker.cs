@@ -7,7 +7,7 @@ using WS.Core.Shared.ModelViews.AspNetModule;
 
 namespace WS.FakeData.AspNetClientModuleData
 {
-    public class AspNetClientModuleLinkViewFaker : Faker<AspNetClientModuleLinkView>
+    public class AspNetClientModuleLinkViewFaker : Faker<AspNetClientModuleView>
     {
         public AspNetClientModuleLinkViewFaker()
         {

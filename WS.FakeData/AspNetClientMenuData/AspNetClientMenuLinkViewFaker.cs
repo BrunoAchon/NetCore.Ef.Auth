@@ -7,7 +7,7 @@ using WS.Core.Shared.ModelViews.AspNetClientMenu;
 
 namespace WS.FakeData.AspNetClientMenuData
 {
-    public class AspNetClientMenuLinkViewFaker : Faker<AspNetClientMenuLink>
+    public class AspNetClientMenuLinkViewFaker : Faker<AspNetClientMenuView>
     {
         public AspNetClientMenuLinkViewFaker()
         {

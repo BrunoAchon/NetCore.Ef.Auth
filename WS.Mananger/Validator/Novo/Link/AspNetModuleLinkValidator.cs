@@ -8,16 +8,16 @@ using WS.Mananger.Interfaces;
 
 namespace WS.Mananger.Validator.Novo.Link
 {
-    public class AspNetModuleLinkValidator : AbstractValidator<AspNetClientModuleLink>
+    public class AspNetModuleLinkValidator : AbstractValidator<AspNetClientModuleNovo>
     {
         private readonly IAspNetModuleRepository _repository;
         public AspNetModuleLinkValidator(IAspNetModuleRepository repository)
         {
             _repository = repository;
             RuleFor(p => p.ModuleId).NotEmpty().NotNull().GreaterThan(0)
-                .MustAsync(async (id, cancelar) =>
-                {
-                    return await ExistsInBase(id);
+                .MustAsync(async (id, cancelar) => 
+                { 
+                    return await ExistsInBase(id); 
                 }).WithMessage("Modulo não cadastrado");
         }
 
