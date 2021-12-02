@@ -40,11 +40,11 @@ namespace WS.Core.Shared.ModelViews
         /// <summary>
         /// Lista de Modulos disponiveis do cliente
         /// </summary>
-        public ICollection<AspNetClientModuleLink> aspNetClientModules { get; set; }
+        public ICollection<AspNetClientModuleNovo> aspNetClientModules { get; set; }
 
         /// <summary>
         /// Lista de Permissoes dos Menus disponiveis do cliente
         /// </summary>
-        public ICollection<AspNetClientMenuLink> aspNetClientMenus { get; set; }
+        public ICollection<AspNetClientMenuNovo> aspNetClientMenus { get; set; }
     }
 }

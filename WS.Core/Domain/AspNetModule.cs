@@ -9,15 +9,14 @@ namespace WS.Core.Domain
         public string ImgMenu { get; set; }
         public int Ordem { get; set; }
 
-        //muitos AspNetModule pra muitos AspNetClientModule
         public virtual ICollection<AspNetClientModule> aspNetClientModules { get; set; }
-
-        //um AspNetModule pra muitos AspNetMenu
+        public virtual ICollection<AspNetClientMenu> aspNetClientMenus { get; set; }
         public virtual ICollection<AspNetMenu> aspNetMenus { get; set; }
 
         public AspNetModule()
         {
             aspNetClientModules = new HashSet<AspNetClientModule>();
+            aspNetClientMenus = new HashSet<AspNetClientMenu>();
             aspNetMenus = new HashSet<AspNetMenu>();
         }
     }

@@ -10,10 +10,11 @@ namespace WS.Core.Domain
         public string RazaoSocial { get; set; }
         public string Server { get; set; }
         public string Banco { get; set; }
-        public DateTime? Vencimento { get; set; }    
+        public DateTime? Vencimento { get; set; }
+
+        //relacionamento
         public virtual ICollection<AspNetClientModule> aspNetClientModules { get; set; }
         public virtual ICollection<AspNetClientMenu> aspNetClientMenus { get; set; }
-
         public AspNetClient()
         {
             aspNetClientModules = new HashSet<AspNetClientModule>();

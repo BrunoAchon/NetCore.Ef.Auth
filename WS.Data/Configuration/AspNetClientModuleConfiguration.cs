@@ -16,8 +16,8 @@ namespace WS.Data.Configuration
 
             builder.Property(x => x.Vencimento).HasColumnType("Date").HasDefaultValue(null);
 
-            builder.HasOne(x => x.Client).WithMany(c => c.aspNetClientModules).HasForeignKey(c => c.ClientId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.Module).WithMany(c => c.aspNetClientModules).HasForeignKey(c => c.ModuleId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.aspNetClient).WithMany(c => c.aspNetClientModules).HasForeignKey(c => c.ClientId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.aspNetModule).WithMany(c => c.aspNetClientModules).HasForeignKey(c => c.ModuleId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

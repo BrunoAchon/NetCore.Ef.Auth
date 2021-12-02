@@ -42,11 +42,11 @@ namespace WS.Core.Shared.ModelViews.AspNetClient
         /// <summary>
         /// Lista de Modulos disponiveis do cliente
         /// </summary>
-        public ICollection<AspNetClientModuleLink> aspNetClientModules { get; set; }
+        public ICollection<AspNetClientModuleView> aspNetClientModules { get; set; }
 
         /// <summary>
         /// Lista de Permissoes dos Menus disponiveis do cliente
         /// </summary>
-        public ICollection<AspNetClientMenuLink> aspNetClientMenus { get; set; }
+        public ICollection<AspNetClientMenuView> aspNetClientMenus { get; set; }
     }
 }
