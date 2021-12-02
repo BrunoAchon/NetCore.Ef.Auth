@@ -4,33 +4,41 @@ using System.Threading.Tasks;
 using WS.Core.Domain;
 using WS.Data.Context;
 using WS.Mananger.Interfaces;
+using WS.Mananger.Interfaces.Services;
 
 namespace WS.Data.Repository
 {
     public class AspNetClientRepository : IAspNetClientRepository
     {
         private readonly WsContext _context;
-        public AspNetClientRepository(WsContext context)
+        //public IApplicationReadDbConnection _readDbConnection { get; }
+        //public IApplicationWriteDbConnection _writeDbConnection { get; }
+
+        public AspNetClientRepository(WsContext context, IApplicationReadDbConnection readDbConnection, IApplicationWriteDbConnection writeDbConnection)
         {
             _context = context;
+            //_readDbConnection = readDbConnection;
+            //_writeDbConnection = writeDbConnection;
         }
 
         #region Get 
         public async Task<IEnumerable<AspNetClient>> GetAspNetClientsAsync()
         {
-            var aspNetClients = await _context.aspNetClients
+            return await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
-                 .Include(cme => cme.aspNetClientMenus)
+                  .ThenInclude(md => md.aspNetModule)
+                .Include(cme => cme.aspNetClientMenus)
+                  .ThenInclude(md => md.aspNetMenu)
                 .AsNoTracking().ToListAsync();
-
-            return aspNetClients;
         }
 
         public async Task<AspNetClient> GetAspNetClientAsync(int id)
         {
             return await _context.aspNetClients
                 .Include(cm => cm.aspNetClientModules)
+                  .ThenInclude(md => md.aspNetModule)
                 .Include(cme => cme.aspNetClientMenus)
+                  .ThenInclude(md => md.aspNetMenu)
                 .AsNoTracking().SingleOrDefaultAsync(c => c.ClientId == id);
         }
         #endregion
@@ -42,18 +50,24 @@ namespace WS.Data.Repository
             await InsertAspNetClientModules(aspNetClient);
             await InsertAspNetClientMenus(aspNetClient);
             await _context.SaveChangesAsync();
-            return aspNetClient;
+
+
+            return await _context.aspNetClients
+            .Include(cm => cm.aspNetClientModules)
+              .ThenInclude(md => md.aspNetModule)
+            .Include(cme => cme.aspNetClientMenus)
+              .ThenInclude(md => md.aspNetMenu)
+            .AsNoTracking().SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
+            //return aspNetClient;
         }
 
         private async Task InsertAspNetClientModules(AspNetClient aspNetClient)
         {
-            //var modulesConsultados = new List<AspNetClientModule>();
             foreach (var module in aspNetClient.aspNetClientModules)
             {
                 var moduleConsultado = await _context.aspNetModules.AsNoTracking().FirstAsync(m => m.ModuleId == module.ModuleId);
                 _context.Entry(module).CurrentValues.SetValues(moduleConsultado);
             }
-            //aspNetClient.aspNetClientModules = modulesConsultados;
         }
 
         private async Task InsertAspNetClientMenus(AspNetClient aspNetClient)
@@ -70,9 +84,11 @@ namespace WS.Data.Repository
         public async Task<AspNetClient> UpdateAspNetClient(AspNetClient aspNetClient)
         {
             var aspNetClientConsultado = await _context.aspNetClients
-                                               .Include(c => c.aspNetClientModules)
-                                               .Include(cme => cme.aspNetClientMenus)
-                                               .SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
+                                                .Include(cm => cm.aspNetClientModules)
+                                                  .ThenInclude(md => md.aspNetModule)
+                                                .Include(cme => cme.aspNetClientMenus)
+                                                  .ThenInclude(md => md.aspNetMenu)
+                                                .SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
             if (aspNetClientConsultado == null)
             {
                 return null;
@@ -80,7 +96,6 @@ namespace WS.Data.Repository
             _context.Entry(aspNetClientConsultado).CurrentValues.SetValues(aspNetClient);
 
             await UpdateAspNetClientModule(aspNetClient, aspNetClientConsultado);
-            await UpdateAspNetClientMenu(aspNetClient, aspNetClientConsultado);
 
             await _context.SaveChangesAsync();
             return aspNetClientConsultado;
@@ -91,16 +106,20 @@ namespace WS.Data.Repository
             foreach (var module in aspNetClient.aspNetClientModules)
             {
                 var moduleConsultado = await _context.aspNetModules.FindAsync(module.ModuleId);
-                aspNetClientConsultado.aspNetClientModules.Add(
-                    new AspNetClientModule
-                    {
-                        ModuleId = moduleConsultado.ModuleId,
-                        Vencimento = module.Vencimento
-                    });
+                if (moduleConsultado != null)
+                {
+                    aspNetClientConsultado.aspNetClientModules.Add(
+                        new AspNetClientModule
+                        {
+                            ModuleId = moduleConsultado.ModuleId,
+                            Vencimento = module.Vencimento
+                        });
+                }
+                await UpdateAspNetClientMenu(aspNetClient, aspNetClientConsultado, moduleConsultado);
             }
         }
 
-        private async Task UpdateAspNetClientMenu(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado)
+        private async Task UpdateAspNetClientMenu(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado, AspNetModule moduleConsultado)
         {
             aspNetClientConsultado.aspNetClientMenus.Clear();
             foreach (var menu in aspNetClient.aspNetClientMenus)
@@ -109,6 +128,7 @@ namespace WS.Data.Repository
                 aspNetClientConsultado.aspNetClientMenus.Add(
                     new AspNetClientMenu
                     {
+                        ModuleId = moduleConsultado.ModuleId,
                         MenuId = menuConsultado.MenuId,
                         Inserir = menu.Inserir,
                         Exibir = menu.Exibir,
@@ -123,8 +143,11 @@ namespace WS.Data.Repository
         public async Task DeleteAspNetClient(int id)
         {
             var aspNetClientConsultado = await _context.aspNetClients.FindAsync(id);
-            _context.aspNetClients.Remove(aspNetClientConsultado);
-            await _context.SaveChangesAsync();
+            if (aspNetClientConsultado != null)
+            {
+                _context.aspNetClients.Remove(aspNetClientConsultado);
+                await _context.SaveChangesAsync();
+            }
         }
         #endregion
     }

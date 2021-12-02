@@ -20,7 +20,8 @@ namespace WS.Data.Repository
         #region Get 
         public async Task<bool> ExistsAsync(int id)
         {
-            return await _context.aspNetModules.FindAsync(id) != null;
+            //return await _context.aspNetModules.FindAsync(id) != null;
+            return await _context.aspNetModules.AnyAsync(p => p.ModuleId == id);
         }
 
         public async Task<IEnumerable<AspNetModule>> GetAspNetModulesAsync()
