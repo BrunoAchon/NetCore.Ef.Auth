@@ -24,7 +24,7 @@ namespace WS.FakeData.AspNetClientData
             RuleFor(pk => pk.Banco, "DBGM0" + orgao);
             RuleFor(pk => pk.Vencimento, fk => fk.Date.Between(fk.Date.Past(100),fk.Date.Recent(100)));
             RuleFor(pk => pk.aspNetClientModules, fk => new AspNetClientModuleLinkViewFaker().Generate(5));
-            //RuleFor(pk => pk.aspNetClientMenus, fk=> new AspNetClientMenuLinkViewFaker().Generate(5));
+            RuleFor(pk => pk.aspNetClientMenus, fk=> new AspNetClientMenuLinkViewFaker().Generate(5));
         }
     }
 }

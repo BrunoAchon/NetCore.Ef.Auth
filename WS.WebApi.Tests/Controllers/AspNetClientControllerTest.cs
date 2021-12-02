@@ -33,11 +33,14 @@ namespace WS.WebApi.Tests.Controllers
         [Fact]
         public async Task Get_Ok() 
         {
+            var controll = new List<AspNetClientView>();
+            listAspNetClient.ForEach(p => controll.Add((AspNetClientView)p.Clone()));
+
             _mananger.GetAspNetClientsAsync().Returns(listAspNetClient);
 
             var resultado = (ObjectResult) await _controller.Get();
             resultado.StatusCode.Should().Be(StatusCodes.Status200OK);
-            resultado.Value.Should().BeEquivalentTo(listAspNetClient);
+            resultado.Value.Should().BeEquivalentTo(controll);
         }
     }
 }

@@ -5,7 +5,7 @@ using WS.Core.Shared.ModelViews.AspNetModule;
 
 namespace WS.Core.Shared.ModelViews.AspNetClientModule
 {
-    public class AspNetClientModuleView
+    public class AspNetClientModuleView: ICloneable
     {
         /// <summary>
         /// ID do Modulo
@@ -24,5 +24,10 @@ namespace WS.Core.Shared.ModelViews.AspNetClientModule
         /// </summary>
         /// <example>Cadastros</example>>
         public AspNetModuleBase aspNetModule { get ; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

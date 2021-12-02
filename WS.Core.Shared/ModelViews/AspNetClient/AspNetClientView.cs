@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WS.Core.Shared.ModelViews.AspNetClientMenu;
 using WS.Core.Shared.ModelViews.AspNetClientModule;
 
 namespace WS.Core.Shared.ModelViews.AspNetClient
 {
-    public class AspNetClientView
+    public class AspNetClientView : ICloneable
     {
         /// <summary>
         /// Identificador do Cliente
@@ -48,5 +49,15 @@ namespace WS.Core.Shared.ModelViews.AspNetClient
         /// Lista de Permissoes dos Menus disponiveis do cliente
         /// </summary>
         public ICollection<AspNetClientMenuView> aspNetClientMenus { get; set; }
+
+        public object Clone()
+        {
+            var aspNetClient = (AspNetClientView)MemberwiseClone();
+            var aspNetClientModules = new List<AspNetClientModuleView>();
+            var aspNetClientMenus = new List<AspNetClientMenuView>();
+            aspNetClient.aspNetClientModules.ToList().ForEach(p => aspNetClientModules.Add((AspNetClientModuleView)p.Clone()));
+            aspNetClient.aspNetClientMenus.ToList().ForEach(p => aspNetClientMenus.Add((AspNetClientMenuView)p.Clone()));
+            return aspNetClient;
+        }
     }
 }

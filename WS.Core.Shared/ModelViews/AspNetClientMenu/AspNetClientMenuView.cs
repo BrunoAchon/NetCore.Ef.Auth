@@ -5,7 +5,7 @@ using WS.Core.Shared.ModelViews.AspNetMenu;
 
 namespace WS.Core.Shared.ModelViews.AspNetClientMenu
 {
-    public class AspNetClientMenuView
+    public class AspNetClientMenuView : ICloneable
     {
         /// <summary>
         /// ID do Menu
@@ -42,5 +42,10 @@ namespace WS.Core.Shared.ModelViews.AspNetClientMenu
         /// </summary>
         /// <example>Cadastros</example>>
         public AspNetMenuView aspNetMenu { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }
