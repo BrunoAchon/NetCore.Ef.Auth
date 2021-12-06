@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WS.Core.Shared.ModelViews.AspNetMenu;
 
 namespace WS.Core.Shared.ModelViews.AspNetModule
 {
-    public class AspNetModuleView
+    public class AspNetModuleView : ICloneable
     {
         /// <summary>
         /// ID do Modulo
@@ -33,5 +35,13 @@ namespace WS.Core.Shared.ModelViews.AspNetModule
         /// Lista de menus de cada modulo
         /// </summary>
         public ICollection<AspNetMenuView> aspNetMenus { get; set; }
+
+        public object Clone()
+        {
+            var aspNetModule = (AspNetModuleView)MemberwiseClone();
+            var aspNetMenus = new List<AspNetMenuView>();
+            aspNetModule.aspNetMenus.ToList().ForEach(p => aspNetMenus.Add((AspNetMenuView)p.Clone()));
+            return aspNetModule;
+        }
     }
 }

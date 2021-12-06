@@ -17,5 +17,6 @@ namespace WS.Core.Shared.ModelViews.AspNetClientModule
         /// </summary>
         /// <example>2021-01-01</example>>
         public DateTime? Vencimento { get; set; }
+
     }
 }

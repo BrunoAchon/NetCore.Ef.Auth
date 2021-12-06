@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WS.Core.Shared.ModelViews.AspNetMenu
 {
-    public class AspNetMenuView
+    public class AspNetMenuView :ICloneable
     {
         /// <summary>
         /// ID do Menu
@@ -22,5 +22,10 @@ namespace WS.Core.Shared.ModelViews.AspNetMenu
         /// </summary>
         /// <example>1</example>>
         public int Ordem { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

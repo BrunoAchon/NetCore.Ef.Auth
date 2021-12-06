@@ -1,4 +1,4 @@
-﻿namespace WS.Core.Shared.ModelViews
+﻿namespace WS.Core.Shared.ModelViews.AspNetClient
 {
     /// <summary>
     /// Objeto utilizado para alteração do cliente para utilizar as ferramentas

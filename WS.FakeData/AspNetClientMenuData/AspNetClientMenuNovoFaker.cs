@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WS.Core.Domain;
 using WS.Core.Shared.ModelViews.AspNetClientMenu;
 
 namespace WS.FakeData.AspNetClientMenuData
 {
-    public class AspNetClientMenuLinkViewFaker : Faker<AspNetClientMenuView>
+    public class AspNetClientMenuNovoFaker: Faker<AspNetClientMenuNovo>
     {
-        public AspNetClientMenuLinkViewFaker()
+        public AspNetClientMenuNovoFaker()
         {
             RuleFor(mn => mn.MenuId, fk => fk.Random.Number(1, 999));
             RuleFor(mn => mn.Exibir, fk => fk.Random.Bool());

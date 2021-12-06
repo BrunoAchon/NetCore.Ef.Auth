@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WS.Core.Shared.ModelViews.AspNetMenu;
 
 namespace WS.Core.Shared.ModelViews.AspNetClientMenu
@@ -40,7 +38,6 @@ namespace WS.Core.Shared.ModelViews.AspNetClientMenu
         /// <summary>
         /// Classe de Menu
         /// </summary>
-        /// <example>Cadastros</example>>
         public AspNetMenuView aspNetMenu { get; set; }
 
         public object Clone()

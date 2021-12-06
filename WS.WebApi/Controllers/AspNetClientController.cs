@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using WS.Core.Shared.ModelViews.AspNetClient;
+using WS.Mananger.Interfaces.Managers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SerilogTimings;
 using System.Linq;
 using System.Threading.Tasks;
-using WS.Core.Shared.ModelViews;
-using WS.Core.Shared.ModelViews.AspNetClient;
-using WS.Mananger.Interfaces;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,12 +16,12 @@ namespace WS.WebApi.Controllers
     [ApiController]
     public class AspNetClientController : ControllerBase
     {
-        private readonly IAspNetClientMananger _aspNetClientMananger;
+        private readonly IAspNetClientManager _aspNetClientManager;
         private readonly ILogger<AspNetClientController> _logger;
 
-        public AspNetClientController(IAspNetClientMananger aspNetClientMananger, ILogger<AspNetClientController> logger)
+        public AspNetClientController(IAspNetClientManager aspNetClientManager, ILogger<AspNetClientController> logger)
         {
-            _aspNetClientMananger = aspNetClientMananger;
+            _aspNetClientManager = aspNetClientManager;
             _logger = logger;
         }
 
@@ -34,7 +34,7 @@ namespace WS.WebApi.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
         {
-            var clients = await _aspNetClientMananger.GetAspNetClientsAsync();
+            var clients = await _aspNetClientManager.GetAspNetClientsAsync();
             if (clients.Any())
             {
                 return Ok(clients);
@@ -52,7 +52,7 @@ namespace WS.WebApi.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
         {
-            var client = await _aspNetClientMananger.GetAspNetClientAsync(id);
+            var client = await _aspNetClientManager.GetAspNetClientAsync(id);
             if (client == null) // Não existem Clientes
             {
                 return NotFound();
@@ -70,6 +70,7 @@ namespace WS.WebApi.Controllers
         /// <param name="aspNetClientNovo"></param>
         [HttpPost]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(AspNetClientNovo aspNetClientNovo)
         {
@@ -78,9 +79,9 @@ namespace WS.WebApi.Controllers
             AspNetClientView aspNetClientInserido;
             using (Operation.Time("Tempo de inclusão do cliente"))
             {
-                aspNetClientInserido = await _aspNetClientMananger.InsertAspNetClient(aspNetClientNovo);
+                aspNetClientInserido = await _aspNetClientManager.InsertAspNetClientAsync(aspNetClientNovo);
             }
-            return CreatedAtAction(nameof(Get), new { id = aspNetClientInserido.ClientId, aspNetClientInserido });
+            return CreatedAtAction(nameof(Get), new { id = aspNetClientInserido.ClientId }, aspNetClientInserido );
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace WS.WebApi.Controllers
         {
             _logger.LogInformation("Parametros: {@aspNetClientAlterar}", aspNetClientAlterar);
 
-            var aspNetClientAtualizado = await _aspNetClientMananger.UpdateAspNetClient(aspNetClientAlterar);
+            var aspNetClientAtualizado = await _aspNetClientManager.UpdateAspNetClientAsync(aspNetClientAlterar);
             if (aspNetClientAtualizado == null)
             {
                 return NotFound();
@@ -119,9 +120,10 @@ namespace WS.WebApi.Controllers
         {
             _logger.LogInformation("Parametros: {@id}", id);
 
-            using (Operation.Time("Tempo de deleção do cliente"))
+            var aspNetClientExcluido = await _aspNetClientManager.DeleteAspNetClientAsync(id);
+            if (aspNetClientExcluido == null)
             {
-                await _aspNetClientMananger.DeleteAspNetClient(id);
+                return NotFound();
             }
             return NoContent();
         }

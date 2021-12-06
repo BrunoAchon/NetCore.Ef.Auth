@@ -1,25 +1,26 @@
 ﻿using Bogus;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using WS.Core.Shared.ModelViews.AspNetClient;
 using WS.FakeData.AspNetClientMenuData;
 using WS.FakeData.AspNetClientModuleData;
 
 namespace WS.FakeData.AspNetClientData
 {
-    public class AspNetClientViewFaker : Faker<AspNetClientView>
+    public class AspNetClientNovoFaker : Faker<AspNetClientNovo>
     {
-        public AspNetClientViewFaker()
+        public AspNetClientNovoFaker()
         {
-            var id = new Faker().Random.Number(1, 999);
             var orgao = new Faker().Random.Number(1324, 7925);
 
-            RuleFor(pk => pk.ClientId, fk => id);
             RuleFor(pk => pk.Orgao, fk => orgao);
             RuleFor(pk => pk.RazaoSocial, fk => fk.Company.CompanyName());
             RuleFor(pk => pk.Server, fk => fk.Internet.IpAddress().ToString());
             RuleFor(pk => pk.Banco, "DBGM0" + orgao);
-            RuleFor(pk => pk.Vencimento, fk => fk.Date.Between(fk.Date.Past(100),fk.Date.Recent(100)));
-            RuleFor(pk => pk.aspNetClientModules, fk => new AspNetClientModuleViewFaker().Generate(5));
-            RuleFor(pk => pk.aspNetClientMenus, fk=> new AspNetClientMenuViewFaker().Generate(5));
+            RuleFor(pk => pk.Vencimento, fk => fk.Date.Between(fk.Date.Past(100), fk.Date.Recent(100)));
+            RuleFor(pk => pk.aspNetClientModules, fk => new AspNetClientModuleNovoFaker().Generate(5));
+            RuleFor(pk => pk.aspNetClientMenus, fk => new AspNetClientMenuNovoFaker().Generate(5));
         }
     }
 }

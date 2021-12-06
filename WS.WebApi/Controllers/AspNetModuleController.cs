@@ -4,9 +4,8 @@ using Microsoft.Extensions.Logging;
 using SerilogTimings;
 using System.Linq;
 using System.Threading.Tasks;
-using WS.Core.Domain;
 using WS.Core.Shared.ModelViews.AspNetModule;
-using WS.Mananger.Interfaces;
+using WS.Mananger.Interfaces.Managers;
 
 namespace WS.WebApi.Controllers
 {
@@ -14,10 +13,10 @@ namespace WS.WebApi.Controllers
     [ApiController]
     public class AspNetModuleController : ControllerBase
     {
-        private readonly IAspNetModuleMananger _aspNetModuleMananger;
+        private readonly IAspNetModuleManager _aspNetModuleMananger;
         private readonly ILogger<AspNetModuleController> _logger;
 
-        public AspNetModuleController(IAspNetModuleMananger aspNetModuleMananger, ILogger<AspNetModuleController> logger)
+        public AspNetModuleController(IAspNetModuleManager aspNetModuleMananger, ILogger<AspNetModuleController> logger)
         {
             _aspNetModuleMananger = aspNetModuleMananger;
             _logger = logger;
@@ -77,9 +76,9 @@ namespace WS.WebApi.Controllers
             AspNetModuleView aspNetModuleInserido;
             using (Operation.Time("Tempo de inclusão do Modulo"))
             {
-                aspNetModuleInserido = await _aspNetModuleMananger.InsertAspNetModule(aspNetModuleNovo);
+                aspNetModuleInserido = await _aspNetModuleMananger.InsertAspNetModuleAsync(aspNetModuleNovo);
             }
-            return CreatedAtAction(nameof(Get), new { id = aspNetModuleInserido.ModuleId, aspNetModuleInserido });
+            return CreatedAtAction(nameof(Get), new { id = aspNetModuleInserido.ModuleId }, aspNetModuleInserido );
         }
 
         /// <summary>
@@ -96,7 +95,7 @@ namespace WS.WebApi.Controllers
             _logger.LogInformation("Parametros: {@aspNetModuleAlterar}", aspNetModuleAlterar);
 
             AspNetModuleView aspNetModuleAtualizado;
-            aspNetModuleAtualizado = await _aspNetModuleMananger.UpdateAspNetModule(aspNetModuleAlterar);
+            aspNetModuleAtualizado = await _aspNetModuleMananger.UpdateAspNetModuleAsync(aspNetModuleAlterar);
             if (aspNetModuleAtualizado == null)
             {
                 return NotFound();
@@ -117,16 +116,11 @@ namespace WS.WebApi.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("Parametros: {@id}", id);
-            var module = await _aspNetModuleMananger.GetAspNetModuleAsync(id);
-            if (module == null)
+            var aspNetModuleExcluido = await _aspNetModuleMananger.DeleteAspNetModuleAsync(id);
+            if (aspNetModuleExcluido == null)
             {
                 return NotFound();
             }
-            if (module.ModuleId == 0)
-            {
-                return NotFound();
-            }
-            await _aspNetModuleMananger.DeleteAspNetModule(id);
             return NoContent();
         }
     }

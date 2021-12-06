@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WS.Core.Domain;
 using WS.Data.Context;
-using WS.Mananger.Interfaces;
+using WS.Mananger.Interfaces.Repositories;
 
 
 namespace WS.Data.Repository
@@ -40,7 +40,7 @@ namespace WS.Data.Repository
         #endregion
 
         #region Insert
-        public async Task<AspNetModule> InsertAspNetModule(AspNetModule aspNetModule)
+        public async Task<AspNetModule> InsertAspNetModuleAsync(AspNetModule aspNetModule)
         {
             await _context.aspNetModules.AddAsync(aspNetModule);
             await _context.SaveChangesAsync();
@@ -49,7 +49,7 @@ namespace WS.Data.Repository
         #endregion
 
         #region Update
-        public async Task<AspNetModule> UpdateAspNetModule(AspNetModule aspNetModule)
+        public async Task<AspNetModule> UpdateAspNetModuleAsync(AspNetModule aspNetModule)
         {
             var aspNetModuleConsultado = await _context.aspNetModules
                                                .Include(c => c.aspNetMenus)
@@ -59,13 +59,13 @@ namespace WS.Data.Repository
                 return null;
             }
             _context.Entry(aspNetModuleConsultado).CurrentValues.SetValues(aspNetModule);
-            await UpdateAspNetMenu(aspNetModule, aspNetModuleConsultado);
+            await UpdateAspNetMenuAsync(aspNetModule, aspNetModuleConsultado);
 
             await _context.SaveChangesAsync();
             return aspNetModuleConsultado;
         }
 
-        private async Task UpdateAspNetMenu(AspNetModule aspNetModule, AspNetModule aspNetModuleConsultado)
+        private async Task UpdateAspNetMenuAsync(AspNetModule aspNetModule, AspNetModule aspNetModuleConsultado)
         {
             foreach (var menu in aspNetModule.aspNetMenus)
             {
@@ -99,11 +99,16 @@ namespace WS.Data.Repository
         #endregion
 
         #region Delete
-        public async Task DeleteAspNetModule(int id)
+        public async Task<AspNetModule> DeleteAspNetModuleAsync(int id)
         {
             var aspNetModuleConsultado = await _context.aspNetModules.FindAsync(id);
-            _context.aspNetModules.Remove(aspNetModuleConsultado);
+            if (aspNetModuleConsultado == null)
+            {
+                return null;
+            }
+            var aspNetModuleRemovido = _context.aspNetModules.Remove(aspNetModuleConsultado);
             await _context.SaveChangesAsync();
+            return aspNetModuleRemovido.Entity;
         }
         #endregion
     }

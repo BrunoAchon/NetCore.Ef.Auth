@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using WS.Core.Domain;
 
-namespace WS.Mananger.Interfaces
+namespace WS.Mananger.Interfaces.Repositories
 {
     public interface IAspNetClientRepository
     {
-        Task DeleteAspNetClient(int id);
-        Task<AspNetClient> GetAspNetClientAsync(int id);
         Task<IEnumerable<AspNetClient>> GetAspNetClientsAsync();
-        Task<AspNetClient> InsertAspNetClient(AspNetClient aspNetClient);
-        Task<AspNetClient> UpdateAspNetClient(AspNetClient aspNetClient);
+        Task<AspNetClient> GetAspNetClientAsync(int id);
+        Task<AspNetClient> InsertAspNetClientAsync(AspNetClient aspNetClient);
+        Task<AspNetClient> UpdateAspNetClientAsync(AspNetClient aspNetClient);
+        Task<AspNetClient> DeleteAspNetClientAsync(int id);
     }
 }

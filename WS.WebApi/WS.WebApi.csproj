@@ -42,7 +42,7 @@
     <ProjectReference Include="..\WS.Core.Shared\WS.Core.Shared.csproj" />
     <ProjectReference Include="..\WS.Core\WS.Core.csproj" />
     <ProjectReference Include="..\WS.Data\WS.Data.csproj" />
-    <ProjectReference Include="..\WS.Mananger\WS.Mananger.csproj" />
+    <ProjectReference Include="..\WS.Mananger\WS.Manager.csproj" />
   </ItemGroup>
 
 

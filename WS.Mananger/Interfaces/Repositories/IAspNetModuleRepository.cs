@@ -2,16 +2,15 @@
 using System.Threading.Tasks;
 using WS.Core.Domain;
 
-namespace WS.Mananger.Interfaces
+namespace WS.Mananger.Interfaces.Repositories
 {
     public interface IAspNetModuleRepository
     {
-        Task<bool> ExistsAsync(int id);
-        Task<AspNetModule> GetAspNetModuleAsync(int id);
         Task<IEnumerable<AspNetModule>> GetAspNetModulesAsync();
-        Task<AspNetModule> InsertAspNetModule(AspNetModule aspNetModule);
-        Task<AspNetModule> UpdateAspNetModule(AspNetModule aspNetModule);
-        Task DeleteAspNetModule(int id);
-
+        Task<AspNetModule> GetAspNetModuleAsync(int id);
+        Task<AspNetModule> InsertAspNetModuleAsync(AspNetModule aspNetModule);
+        Task<AspNetModule> UpdateAspNetModuleAsync(AspNetModule aspNetModule);
+        Task<AspNetModule> DeleteAspNetModuleAsync(int id);
+        Task<bool> ExistsAsync(int id);
     }
 }

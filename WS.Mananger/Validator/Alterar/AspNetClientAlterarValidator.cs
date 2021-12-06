@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using WS.Core.Shared.ModelViews;
+using WS.Core.Shared.ModelViews.AspNetClient;
 using WS.Mananger.Interfaces;
 using WS.Mananger.Interfaces.Repositories;
 using WS.Mananger.Validator.Novo;

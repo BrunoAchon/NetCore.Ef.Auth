@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WS.Core.Domain;
 using WS.Data.Context;
-using WS.Mananger.Interfaces;
+using WS.Mananger.Interfaces.Repositories;
 using WS.Mananger.Interfaces.Services;
 
 namespace WS.Data.Repository
@@ -44,11 +44,11 @@ namespace WS.Data.Repository
         #endregion
 
         #region Insert
-        public async Task<AspNetClient> InsertAspNetClient(AspNetClient aspNetClient)
+        public async Task<AspNetClient> InsertAspNetClientAsync(AspNetClient aspNetClient)
         {
             await _context.aspNetClients.AddAsync(aspNetClient);
-            await InsertAspNetClientModules(aspNetClient);
-            await InsertAspNetClientMenus(aspNetClient);
+            await InsertAspNetClientModulesAsync(aspNetClient);
+            await InsertAspNetClientMenusAsync(aspNetClient);
             await _context.SaveChangesAsync();
 
 
@@ -60,8 +60,7 @@ namespace WS.Data.Repository
             .AsNoTracking().SingleOrDefaultAsync(c => c.ClientId == aspNetClient.ClientId);
             //return aspNetClient;
         }
-
-        private async Task InsertAspNetClientModules(AspNetClient aspNetClient)
+        private async Task InsertAspNetClientModulesAsync(AspNetClient aspNetClient)
         {
             foreach (var module in aspNetClient.aspNetClientModules)
             {
@@ -69,8 +68,7 @@ namespace WS.Data.Repository
                 _context.Entry(module).CurrentValues.SetValues(moduleConsultado);
             }
         }
-
-        private async Task InsertAspNetClientMenus(AspNetClient aspNetClient)
+        private async Task InsertAspNetClientMenusAsync(AspNetClient aspNetClient)
         {
             foreach (var menu in aspNetClient.aspNetClientMenus)
             {
@@ -81,7 +79,7 @@ namespace WS.Data.Repository
         #endregion
 
         #region Update
-        public async Task<AspNetClient> UpdateAspNetClient(AspNetClient aspNetClient)
+        public async Task<AspNetClient> UpdateAspNetClientAsync(AspNetClient aspNetClient)
         {
             var aspNetClientConsultado = await _context.aspNetClients
                                                 .Include(cm => cm.aspNetClientModules)
@@ -95,12 +93,12 @@ namespace WS.Data.Repository
             }
             _context.Entry(aspNetClientConsultado).CurrentValues.SetValues(aspNetClient);
 
-            await UpdateAspNetClientModule(aspNetClient, aspNetClientConsultado);
+            await UpdateAspNetClientModuleAsync(aspNetClient, aspNetClientConsultado);
 
             await _context.SaveChangesAsync();
             return aspNetClientConsultado;
         }
-        private async Task UpdateAspNetClientModule(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado)
+        private async Task UpdateAspNetClientModuleAsync(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado)
         {
             aspNetClientConsultado.aspNetClientModules.Clear();
             foreach (var module in aspNetClient.aspNetClientModules)
@@ -115,11 +113,10 @@ namespace WS.Data.Repository
                             Vencimento = module.Vencimento
                         });
                 }
-                await UpdateAspNetClientMenu(aspNetClient, aspNetClientConsultado, moduleConsultado);
+                await UpdateAspNetClientMenuAsync(aspNetClient, aspNetClientConsultado, moduleConsultado);
             }
         }
-
-        private async Task UpdateAspNetClientMenu(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado, AspNetModule moduleConsultado)
+        private async Task UpdateAspNetClientMenuAsync(AspNetClient aspNetClient, AspNetClient aspNetClientConsultado, AspNetModule moduleConsultado)
         {
             aspNetClientConsultado.aspNetClientMenus.Clear();
             foreach (var menu in aspNetClient.aspNetClientMenus)
@@ -140,14 +137,16 @@ namespace WS.Data.Repository
         #endregion
 
         #region Delete
-        public async Task DeleteAspNetClient(int id)
+        public async Task<AspNetClient> DeleteAspNetClientAsync(int id)
         {
             var aspNetClientConsultado = await _context.aspNetClients.FindAsync(id);
-            if (aspNetClientConsultado != null)
+            if (aspNetClientConsultado == null)
             {
-                _context.aspNetClients.Remove(aspNetClientConsultado);
-                await _context.SaveChangesAsync();
+                return null;
             }
+            var aspNetClientRemovido = _context.aspNetClients.Remove(aspNetClientConsultado);
+            await _context.SaveChangesAsync();
+            return aspNetClientRemovido.Entity;
         }
         #endregion
     }

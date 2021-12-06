@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WS.Core\WS.Core.csproj" />
-    <ProjectReference Include="..\WS.Mananger\WS.Mananger.csproj" />
+    <ProjectReference Include="..\WS.Mananger\WS.Manager.csproj" />
   </ItemGroup>
 
 </Project>

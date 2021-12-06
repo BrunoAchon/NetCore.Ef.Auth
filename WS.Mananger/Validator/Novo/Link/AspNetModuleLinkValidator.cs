@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using WS.Core.Shared.ModelViews.AspNetClientModule;
-using WS.Mananger.Interfaces;
+using WS.Mananger.Interfaces.Repositories;
 
 namespace WS.Mananger.Validator.Novo.Link
 {

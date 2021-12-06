@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using WS.Core.Domain;
-using WS.Core.Shared.ModelViews;
+using WS.Core.Shared.ModelViews.AspNetClient;
 
 namespace WS.Mananger.Mappings.Alterar
 {

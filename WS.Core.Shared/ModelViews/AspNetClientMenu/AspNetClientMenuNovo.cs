@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WS.Core.Shared.ModelViews.AspNetClientMenu
 {
-    public class AspNetClientMenuNovo
+    public class AspNetClientMenuNovo 
     {
         /// <summary>
         /// ID do Menu
@@ -35,5 +35,6 @@ namespace WS.Core.Shared.ModelViews.AspNetClientMenu
         /// </summary>
         /// <example>false</example>>
         public bool Excluir { get; set; }
+
     }
 }

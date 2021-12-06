@@ -68,7 +68,6 @@
             <summary>
             Classe de Menu
             </summary>
-            <example>Cadastros</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClientModule.AspNetClientModuleNovo.ModuleId">
             <summary>
@@ -100,59 +99,59 @@
             </summary>
             <example>Cadastros</example>>
         </member>
-        <member name="T:WS.Core.Shared.ModelViews.AspNetClientAlterar">
+        <member name="T:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientAlterar">
             <summary>
             Objeto utilizado para alteração do cliente para utilizar as ferramentas
             </summary>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientAlterar.ClientId">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientAlterar.ClientId">
             <summary>
             ID do cliente
             </summary>
             <example>1</example>>
         </member>
-        <member name="T:WS.Core.Shared.ModelViews.AspNetClientNovo">
+        <member name="T:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo">
             <summary>
             Objeto utilizado para inserção de um novo cliente para utilizar as ferramentas
             </summary>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Orgao">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Orgao">
             <summary>
             Orgao autuador do cliente
             </summary>
             <example>7075</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.RazaoSocial">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.RazaoSocial">
             <summary>
             Razao Social do cliente 
             </summary>
             <example>São Bernardo do Campo</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Server">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Server">
             <summary>
             Servidor a qual a aplicação deve olhar para buscar os dados do cliente 
             Sever: IP ou SERVENAME
             </summary>
             <example>192.168.0.1 </example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Banco">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Banco">
             <summary>
             Banco de dados a qual a aplicação deve olhar para buscar os dados do cliente 
             </summary>
             <example>DBGM07075</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.Vencimento">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Vencimento">
             <summary>
             Vencimento do acesso do cliente - interrupção do uso da aplicação total
             </summary>
             <example>2021-01-01</example>>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.aspNetClientModules">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.aspNetClientModules">
             <summary>
             Lista de Modulos disponiveis do cliente
             </summary>
         </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetClientNovo.aspNetClientMenus">
+        <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.aspNetClientMenus">
             <summary>
             Lista de Permissoes dos Menus disponiveis do cliente
             </summary>
