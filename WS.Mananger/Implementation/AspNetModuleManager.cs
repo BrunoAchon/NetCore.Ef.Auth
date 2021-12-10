@@ -32,7 +32,6 @@ namespace WS.Mananger.Implementation
 
         public async Task<AspNetModuleView> DeleteAspNetModuleAsync(int id)
         {
-            await _aspNetModuleRepository.DeleteAspNetModuleAsync(id);
             var aspNetModule = await _aspNetModuleRepository.DeleteAspNetModuleAsync(id);
             return _mapper.Map<AspNetModuleView>(aspNetModule);
         }
@@ -40,15 +39,13 @@ namespace WS.Mananger.Implementation
         public async Task<AspNetModuleView> InsertAspNetModuleAsync(AspNetModuleNovo aspNetModuleNovo)
         {
             var aspNetModule = _mapper.Map<AspNetModule>(aspNetModuleNovo);
-            aspNetModule = await _aspNetModuleRepository.InsertAspNetModuleAsync(aspNetModule);
-            return _mapper.Map<AspNetModuleView>(aspNetModule);
+            return _mapper.Map<AspNetModuleView>(await _aspNetModuleRepository.InsertAspNetModuleAsync(aspNetModule));
         }
 
         public async Task<AspNetModuleView> UpdateAspNetModuleAsync(AspNetModuleAlterar aspNetModuleAlterar)
         {
             var aspNetModule = _mapper.Map<AspNetModule>(aspNetModuleAlterar);
-            aspNetModule = await _aspNetModuleRepository.UpdateAspNetModuleAsync(aspNetModule);
-            return _mapper.Map<AspNetModuleView>(aspNetModule);
+            return _mapper.Map<AspNetModuleView>(await _aspNetModuleRepository.UpdateAspNetModuleAsync(aspNetModule));
         }
     }
 }

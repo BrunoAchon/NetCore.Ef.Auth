@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace WS.Data.Repository
 
         public async Task<bool> ExistsAsync(int id)
         {
-            return await _context.aspNetMenus.FindAsync(id) != null;
+            return await _context.aspNetMenus.AsNoTracking().AnyAsync(p => p.MenuId == id);
         }
     }
 }

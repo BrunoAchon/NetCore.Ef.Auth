@@ -14,11 +14,9 @@ namespace WS.Data.Repository
         //public IApplicationReadDbConnection _readDbConnection { get; }
         //public IApplicationWriteDbConnection _writeDbConnection { get; }
 
-        public AspNetClientRepository(WsContext context, IApplicationReadDbConnection readDbConnection, IApplicationWriteDbConnection writeDbConnection)
+        public AspNetClientRepository(WsContext context)
         {
             _context = context;
-            //_readDbConnection = readDbConnection;
-            //_writeDbConnection = writeDbConnection;
         }
 
         #region Get 

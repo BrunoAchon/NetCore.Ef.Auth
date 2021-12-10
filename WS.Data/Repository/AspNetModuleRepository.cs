@@ -21,7 +21,7 @@ namespace WS.Data.Repository
         public async Task<bool> ExistsAsync(int id)
         {
             //return await _context.aspNetModules.FindAsync(id) != null;
-            return await _context.aspNetModules.AnyAsync(p => p.ModuleId == id);
+            return await _context.aspNetModules.AsNoTracking().AnyAsync(p => p.ModuleId == id);
         }
 
         public async Task<IEnumerable<AspNetModule>> GetAspNetModulesAsync()
@@ -35,7 +35,7 @@ namespace WS.Data.Repository
         {
             return await _context.aspNetModules
                 .Include(m => m.aspNetMenus)
-                .SingleOrDefaultAsync(p => p.ModuleId == id);
+                .AsNoTracking().SingleOrDefaultAsync(p => p.ModuleId == id);
         }
         #endregion
 
@@ -59,20 +59,25 @@ namespace WS.Data.Repository
                 return null;
             }
             _context.Entry(aspNetModuleConsultado).CurrentValues.SetValues(aspNetModule);
-            await UpdateAspNetMenuAsync(aspNetModule, aspNetModuleConsultado);
 
+            await UpdateAspNetMenuAsync(aspNetModule, aspNetModuleConsultado);
             await _context.SaveChangesAsync();
             return aspNetModuleConsultado;
         }
 
         private async Task UpdateAspNetMenuAsync(AspNetModule aspNetModule, AspNetModule aspNetModuleConsultado)
         {
+            // serparando a lista original para verificar deleções ao final do update
+            List<AspNetMenu> menuExcluir = aspNetModuleConsultado.aspNetMenus.ToList();
+
             foreach (var menu in aspNetModule.aspNetMenus)
             {
-                var menuConsultado = await _context.aspNetMenus.FindAsync(menu.MenuId);
+                //var menuConsultado = await _context.aspNetMenus.FindAsync(menu.MenuId); // Não funciona em teste
+                var menuConsultado = aspNetModuleConsultado.aspNetMenus.FirstOrDefault(c => c.MenuId == menu.MenuId);
 
                 if (menuConsultado == null)
                 {
+                    //Incluir
                     aspNetModuleConsultado.aspNetMenus.Add(
                         new AspNetMenu
                         {
@@ -80,20 +85,25 @@ namespace WS.Data.Repository
                             Menu = menu.Menu,
                             Ordem = menu.Ordem
                         });
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
+                    //Alterar
                     menuConsultado.Menu = menu.Menu;
                     menuConsultado.Ordem = menu.Ordem;
+                    await _context.SaveChangesAsync();
                 }
             }
 
-            List<AspNetMenu> menuExcluir = aspNetModuleConsultado.aspNetMenus.ToList()
-                .Where(s => !aspNetModule.aspNetMenus.ToList().Any(p => p.MenuId == s.MenuId)).ToList();
+            List<AspNetMenu> Excluir = menuExcluir.ToList()
+                  .Where(s => !aspNetModule.aspNetMenus.ToList().Any(p => p.MenuId == s.MenuId)).ToList();
 
-            foreach (var menu in menuExcluir)
+            foreach (var menu in Excluir)
             {
+                //Excluir
                 aspNetModuleConsultado.aspNetMenus.Remove(menu);
+                await _context.SaveChangesAsync();
             }
         }
         #endregion
@@ -108,6 +118,7 @@ namespace WS.Data.Repository
             }
             var aspNetModuleRemovido = _context.aspNetModules.Remove(aspNetModuleConsultado);
             await _context.SaveChangesAsync();
+
             return aspNetModuleRemovido.Entity;
         }
         #endregion
