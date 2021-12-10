@@ -11,6 +11,13 @@ namespace WS.Core.Domain
 
         public virtual ICollection<AspNetClientModule> aspNetClientModules { get; set; }
         public virtual ICollection<AspNetClientMenu> aspNetClientMenus { get; set; }
+
+        public virtual ICollection<AspNetUserModule> aspNetUserModules { get; set; }
+        public virtual ICollection<AspNetUserMenu> aspNetUserMenus { get; set; }
+
+        public virtual ICollection<AspNetRoleModule> aspNetRoleModules { get; set; }
+        public virtual ICollection<AspNetRoleMenu> aspNetRoleMenus { get; set; }
+
         public virtual ICollection<AspNetMenu> aspNetMenus { get; set; }
 
         public AspNetModule()

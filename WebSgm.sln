@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WS.WebApi.Tests", "WS.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WS.FakeData", "WS.FakeData\WS.FakeData.csproj", "{44B76B3D-1469-4451-8851-4360EA85AAB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS.Repository.Tests", "WS.Repository.Tests\WS.Repository.Tests.csproj", "{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{44B76B3D-1469-4451-8851-4360EA85AAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B76B3D-1469-4451-8851-4360EA85AAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B76B3D-1469-4451-8851-4360EA85AAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{45929505-0A86-4C29-931F-02CE4BDA8318} = {C13884F9-E86D-4A7C-8EE7-2423C4BB3B4C}
 		{7A2E6CF2-645C-4FED-84AB-27AC6E8D67D9} = {2950A68C-6C63-400A-8753-309BAB10A75A}
 		{44B76B3D-1469-4451-8851-4360EA85AAB8} = {2950A68C-6C63-400A-8753-309BAB10A75A}
+		{1E1AE01F-9B89-4BC6-9489-9BFA082C3A91} = {2950A68C-6C63-400A-8753-309BAB10A75A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E9A239D-5E84-483B-ADDE-CDE503D5F43D}

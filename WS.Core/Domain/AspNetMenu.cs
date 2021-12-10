@@ -12,10 +12,14 @@ namespace WS.Core.Domain
         public string Menu { get; set; }
         public int Ordem { get; set; }
         public virtual ICollection<AspNetClientMenu> aspNetClientMenus { get; set; }
+        public virtual ICollection<AspNetUserMenu> aspNetUserMenus { get; set; }
+        public virtual ICollection<AspNetRoleMenu> aspNetRoleMenus { get; set; }
 
         public AspNetMenu()
         {
             aspNetClientMenus = new HashSet<AspNetClientMenu>();
+            aspNetUserMenus = new HashSet<AspNetUserMenu>();
+            aspNetRoleMenus = new HashSet<AspNetRoleMenu>();
         }
     }
 }
