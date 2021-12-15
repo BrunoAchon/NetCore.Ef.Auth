@@ -55,7 +55,8 @@ namespace WS.WebApi
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseIISIntegration();
                 });
     }
 }

@@ -1,12 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
+﻿using System.Data;
 using WS.Core.Domain;
 using WS.Data.Configuration;
-using WS.Mananger.Interfaces.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace WS.Data.Context
 {
-    public class WsContext: DbContext
+    public class WsContext : IdentityDbContext<AspNetUser, AspNetRole, int,
+                                              IdentityUserClaim<int>, AspNetUserRole, IdentityUserLogin<int>,
+                                              IdentityRoleClaim<int>, IdentityUserToken<int>>
+    //public class WsContext : DbContext
     {
         public IDbConnection Connection => Database.GetDbConnection();
         public DbSet<AspNetClient> aspNetClients { get; set; }
@@ -14,6 +18,7 @@ namespace WS.Data.Context
         public DbSet<AspNetClientMenu> aspNetClientMenus { get; set; }
         public DbSet<AspNetModule> aspNetModules { get; set; }
         public DbSet<AspNetMenu> aspNetMenus { get; set; }
+        public DbSet<AspNetUser> aspNetUsers { get; set; }
 
         public WsContext(DbContextOptions options): base(options) { }
 
@@ -27,6 +32,15 @@ namespace WS.Data.Context
             builder.ApplyConfiguration(new AspNetModuleConfiguration());
 
             builder.ApplyConfiguration(new AspNetMenuConfiguration());
+
+            builder.ApplyConfiguration(new AspNetRoleConfiguration());
+            builder.ApplyConfiguration(new AspNetRoleModuleConfiguration());
+            builder.ApplyConfiguration(new AspNetRoleMenuConfiguration());
+
+            builder.ApplyConfiguration(new AspNetUserConfiguration());
+            builder.ApplyConfiguration(new AspNetUserModuleConfiguration());
+            builder.ApplyConfiguration(new AspNetUserMenuConfiguration());
+            builder.ApplyConfiguration(new AspNetUserRoleConfiguration());
 
         }
     }

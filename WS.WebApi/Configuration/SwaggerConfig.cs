@@ -5,6 +5,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace WS.WebApi.Configuration
@@ -22,7 +23,7 @@ namespace WS.WebApi.Configuration
                         Version = "v1",
                         Description = "Api geral do sistema de gestão de multas.",
                     });
-                
+                //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.AddFluentValidationRules();                
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -42,6 +43,7 @@ namespace WS.WebApi.Configuration
                 c.DocExpansion(DocExpansion.None);
                 c.RoutePrefix = string.Empty;
                 c.SwaggerEndpoint("./swagger/v1/swagger.json", "WS v1");
+                //c.SwaggerEndpoint("./v1/swagger.json", "WS V1");
             });
         }
     }

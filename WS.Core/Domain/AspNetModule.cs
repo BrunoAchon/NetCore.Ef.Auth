@@ -24,6 +24,13 @@ namespace WS.Core.Domain
         {
             aspNetClientModules = new HashSet<AspNetClientModule>();
             aspNetClientMenus = new HashSet<AspNetClientMenu>();
+
+            aspNetUserModules = new HashSet<AspNetUserModule>();
+            aspNetUserMenus = new HashSet<AspNetUserMenu>();
+
+            aspNetRoleModules = new HashSet<AspNetRoleModule>();
+            aspNetRoleMenus = new HashSet<AspNetRoleMenu>();
+
             aspNetMenus = new HashSet<AspNetMenu>();
         }
     }

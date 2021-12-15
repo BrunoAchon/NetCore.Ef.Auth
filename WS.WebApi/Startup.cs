@@ -20,9 +20,13 @@ namespace WS.WebApi
         {
             services.AddControllers();
 
+            services.AddIdentityCoreConfigration();
+
             services.AddFluentValidationConfiguration();
 
             services.AddDataBaseConfiguration(Configuration);
+
+            services.AddAuthenticationConfiguration(Configuration);
 
             services.AddAutoMappingConfiguration();
 
@@ -38,6 +42,7 @@ namespace WS.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseAuthentication();
 
             app.UseDataBaseConfiguration();
 

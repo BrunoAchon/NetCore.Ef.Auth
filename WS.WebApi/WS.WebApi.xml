@@ -68,5 +68,17 @@
             <remarks>Ao excluir um Modulo o mesmo será replicado aos serviços do software,
             use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
         </member>
+        <member name="M:WS.WebApi.Controllers.AspNetUserController.Login(WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogin)">
+            <summary>
+            Autenticação de Login de Usuário
+            </summary>
+            <param name="Login"></param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetUserController.Register(WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister)">
+            <summary>
+            Criação de Login de Usuário
+            </summary>
+            <param name="Register"></param>
+        </member>
     </members>
 </doc>

@@ -354,5 +354,119 @@
             Lista de menus de cada modulo
             </summary>
         </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogin.UserName">
+            <summary>
+            Login do usuário
+            </summary>
+            <example>bruno.achon</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogin.Password">
+            <summary>
+            Senha do usuário
+            </summary>
+            <example></example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.UserName">
+            <summary>
+            login do usuário
+            </summary>
+            <example>bruno.achon</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.NormalizedUserName">
+            <summary>
+            login do usuário Normalizado
+            </summary>
+            <example>BRUNO.ACHON</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.Password">
+            <summary>
+            Senha do usuário
+            </summary>
+            <example></example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.UserId">
+            <summary>
+            Identificador do Usuário
+            </summary>
+            <example>7075</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.UserName">
+            <summary>
+            login do usuário
+            </summary>
+            <example>bruno.achon</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.NormalizedUserName">
+            <summary>
+            login do usuário Normalizado
+            </summary>
+            <example>BRUNO.ACHON</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.Email">
+            <summary>
+            Email do usuário
+            </summary>
+            <example>brunoachon@cldsbc.com.br</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.NormalizedEmail">
+            <summary>
+            Email do usuário Normalizado
+            </summary>
+            <example>BRUNOACHON@CLDSBC.COM.BR</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.EmailConfirmed">
+            <summary>
+            Usuário confirmou o email
+            </summary>
+            <example>True</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.PhoneNumber">
+            <summary>
+            Telefone do usuário
+            </summary>
+            <example>(11)91111-2222</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.PhoneNumberConfirmed">
+            <summary>
+            Usuário confirmou o telefone
+            </summary>
+            <example>True</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.TwoFactorEnabled">
+            <summary>
+            Usuário habilitou o login por 2 fatores
+            </summary>
+            <example>False</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.AccessFailedCount">
+            <summary>
+            Tempo restante de bloqueio da conta
+            </summary>
+            <example>Null</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.LockoutEnabled">
+            <summary>
+            Quantidade de Acessos fracassados
+            </summary>
+            <example>False</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.LockoutEnd">
+            <summary>
+            Tempo restante de bloqueio da conta
+            </summary>
+            <example>Null</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.SecurityStamp">
+            <summary>
+            Ainda não sei oque é
+            </summary>
+            <example>Pesquisar oque é</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.ConcurrencyStamp">
+            <summary>
+            Ainda não sei oque é
+            </summary>
+            <example>Pesquisar oque é</example>>
+        </member>
     </members>
 </doc>
