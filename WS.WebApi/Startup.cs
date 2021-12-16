@@ -26,7 +26,7 @@ namespace WS.WebApi
 
             services.AddDataBaseConfiguration(Configuration);
 
-            services.AddAuthenticationConfiguration(Configuration);
+            services.AddJwtTConfiguration(Configuration);
 
             services.AddAutoMappingConfiguration();
 
@@ -38,11 +38,11 @@ namespace WS.WebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseExceptionHandler("/error");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseAuthentication();
 
             app.UseDataBaseConfiguration();
 
@@ -52,7 +52,7 @@ namespace WS.WebApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseJwtConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

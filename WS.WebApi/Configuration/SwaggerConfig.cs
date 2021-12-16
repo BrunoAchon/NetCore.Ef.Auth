@@ -24,6 +24,26 @@ namespace WS.WebApi.Configuration
                         Description = "Api geral do sistema de gestão de multas.",
                     });
                 //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Insira o token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference= new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id ="Bearer"
+                        }
+                    },
+                        new string[]{ }
+                    }
+                });
                 c.AddFluentValidationRules();                
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

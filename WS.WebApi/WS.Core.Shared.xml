@@ -354,6 +354,24 @@
             Lista de menus de cada modulo
             </summary>
         </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogado.UserId">
+            <summary>
+            Identificador do Usuário
+            </summary>
+            <example>1</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogado.UserName">
+            <summary>
+            login do usuário
+            </summary>
+            <example>bruno.achon</example>>
+        </member>
+        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogado.Token">
+            <summary>
+            TokenDeValidacao
+            </summary>
+            <example></example>>
+        </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogin.UserName">
             <summary>
             Login do usuário

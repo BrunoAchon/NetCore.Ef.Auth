@@ -2,7 +2,7 @@
 using WS.Core.Domain;
 using WS.Core.Shared.ModelViews.AspNetClient;
 
-namespace WS.Mananger.Mappings.Alterar
+namespace WS.Manager.Mappings.Alterar
 {
     public class AspNetClientAlterarMappingProfile : Profile
     {

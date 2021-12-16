@@ -10,10 +10,11 @@ using WS.Data.Context;
 using WS.Mananger.Interfaces.Services;
 using WS.Mananger.Interfaces.Repositories;
 using System.Security.Claims;
+using WS.Manager.Interfaces.Repositories;
 
 namespace WS.Data.Repository
 {
-    public class AspNetUserRepository : IUserStore<AspNetUser>, IUserPasswordStore<AspNetUser>
+    public class AspNetUserRepository : IUserStore<AspNetUser>, IUserPasswordStore<AspNetUser>, IAspNetUserRepository
     {
         private readonly WsContext _context;
         public IApplicationReadDbConnection _readDbConnection { get; }
@@ -26,6 +27,7 @@ namespace WS.Data.Repository
             _writeDbConnection = writeDbConnection;
         }
 
+        #region Dapper
         public async Task<string> GetNormalizedUserNameAsync(AspNetUser user, CancellationToken cancellationToken)
         {
             return await Task.FromResult(user.NormalizedUserName);
@@ -132,6 +134,40 @@ namespace WS.Data.Repository
 
             return new ClaimsPrincipal(identity);
         }
+        #endregion
+
+        #region EFCore
+        public async Task<IEnumerable<AspNetUser>> GetAspNetUserAsync()
+        {
+            return await _context.aspNetUsers.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<AspNetUser> GetAspNetUserAsync(string login)
+        {
+            return await _context.aspNetUsers
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.UserName == login);
+        }
+
+        public async Task<AspNetUser> InsertAspNetUserAsync(AspNetUser aspNetUser)
+        {
+            await _context.aspNetUsers.AddAsync(aspNetUser);
+            await _context.SaveChangesAsync();
+            return aspNetUser;
+        }
+
+        public async Task<AspNetUser> UpdateAspNetUserAsync(AspNetUser aspNetUser)
+        {
+            var usuarioConsultado = await _context.aspNetUsers.FindAsync(aspNetUser.UserName);
+            if (usuarioConsultado == null)
+            {
+                return null;
+            }
+            _context.Entry(usuarioConsultado).CurrentValues.SetValues(aspNetUser);
+            await _context.SaveChangesAsync();
+            return usuarioConsultado;
+        }
+        #endregion
 
         public void Dispose()
         {

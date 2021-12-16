@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WS.Mananger.Mappings.Alterar;
-using WS.Mananger.Mappings.Novo;
+using WS.Manager.Mappings.Novo;
+using WS.Manager.Mappings.Alterar;
 
 namespace WS.WebApi.Configuration
 {
@@ -16,7 +16,9 @@ namespace WS.WebApi.Configuration
                         typeof(AspNetModuleAlterarMappingProfile),
 
                         typeof(AspNetMenuNovoMappingProfile),
-                        typeof(AspNetMenuAlterarMappingProfile)
+                        typeof(AspNetMenuAlterarMappingProfile),
+
+                        typeof(AspNetUserMappingProfile)
                         );
         }
     }

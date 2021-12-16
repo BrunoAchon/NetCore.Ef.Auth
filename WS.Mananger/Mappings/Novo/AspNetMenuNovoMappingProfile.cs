@@ -3,7 +3,7 @@ using WS.Core.Domain;
 using WS.Core.Shared.ModelViews.AspNetClientMenu;
 using WS.Core.Shared.ModelViews.AspNetMenu;
 
-namespace WS.Mananger.Mappings.Novo
+namespace WS.Manager.Mappings.Novo
 {
     public class AspNetMenuNovoMappingProfile : Profile
     {

@@ -16,6 +16,8 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using WS.Core.Domain;
+using WS.Manager.Interfaces.Managers;
+using WS.Manager.Interfaces.Services;
 
 namespace WS.WebApi.Controllers
 {
@@ -23,26 +25,33 @@ namespace WS.WebApi.Controllers
     [ApiController]
     public class AspNetUserController : ControllerBase
     {
-        private readonly UserManager<AspNetUser> _aspNetUserMananger;
+        private readonly UserManager<AspNetUser> _userMananger;
+        private readonly IAspNetUserManager _aspNetUserMananger;
         private readonly SignInManager<AspNetUser> _signInManager;
         private readonly ILogger<AspNetUserController> _logger;
         private readonly IUserClaimsPrincipalFactory<AspNetUser> _userClaimsPrincipalFactory;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
+        private readonly IJWTService _jwt;
 
-        public AspNetUserController(UserManager<AspNetUser> aspNetUserMananger,
+        public AspNetUserController(
+                        UserManager<AspNetUser> userMananger,
+                        IAspNetUserManager aspNetUserMananger,
                         SignInManager<AspNetUser> signInManager,
                         ILogger<AspNetUserController> logger,
                         IUserClaimsPrincipalFactory<AspNetUser> userClaimsPrincipalFactory,
                         IMapper mapper,
-                        IConfiguration config)
+                        IConfiguration config,
+                        IJWTService jwt)
         {
             _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
             _aspNetUserMananger = aspNetUserMananger;
+            _userMananger = userMananger;
             _signInManager = signInManager;
             _logger = logger;
             _mapper = mapper;
             _config = config;
+            _jwt = jwt;
         }
 
         /// <summary>
@@ -60,29 +69,47 @@ namespace WS.WebApi.Controllers
         {
             try
             {
-                var user = await _aspNetUserMananger.FindByNameAsync(Login.UserName);
+                var user = await _userMananger.FindByNameAsync(Login.UserName);
                 if (user == null)
                 {
                     return NotFound();
                 }
-
-                var result = await _signInManager.CheckPasswordSignInAsync(user, Login.Password, false);
-
-                if (result.Succeeded)
+                else
                 {
-                    var appUser = await _aspNetUserMananger.Users
-                            .FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
-
-                    var userToReturn = _mapper.Map<AspNetUser>(appUser);
-
-                    return Ok(new
+                    if (user != null && !await _userMananger.IsLockedOutAsync(user))
                     {
-                        token = GenerateJWToken(appUser).Result,
-                        user = userToReturn
-                    });
-                }
+                        if (await _userMananger.CheckPasswordAsync(user, Login.Password))
+                        {
+                            await _userMananger.ResetAccessFailedCountAsync(user);
 
-                return Unauthorized();
+                            var appUser = await _userMananger.Users
+                                    .FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
+
+                            var usuarioLogado = await _aspNetUserMananger.ValidaUsuarioEGeraTokenAsync(user);
+                            if (usuarioLogado != null)
+                            {
+                                return Ok(usuarioLogado);
+                            }
+                        }
+                        else
+                        {
+                            await _userMananger.AccessFailedAsync(user);
+                            if (await _userMananger.IsLockedOutAsync(user))
+                            {
+                                //Email deve ser enviando com sugestão de Mudança de Senha!
+                                //var usuarioLogado = await _aspNetUserMananger.MandarEmailRedefinirSenha(user);
+                            }
+                            UnauthorizedObjectResult unauthorizedObjectResult = new UnauthorizedObjectResult(new
+                            {
+                                status = "UNAUTHORIZED",
+                                message = "Usuário temporáriamente bloqueado.",
+                                situation = "O usuário foi bloqueado por excesso de tentativas mal sucedidas durante o login."
+                            });
+                            return Unauthorized(unauthorizedObjectResult);
+                        }
+                    }
+                    return Unauthorized();
+                }
             }
             catch (Exception ex)
             {
@@ -104,7 +131,7 @@ namespace WS.WebApi.Controllers
         {
             try
             {
-                var user = await _aspNetUserMananger.FindByNameAsync(Register.UserName);
+                var user = await _userMananger.FindByNameAsync(Register.UserName);
 
                 if (user == null)
                 {
@@ -114,14 +141,14 @@ namespace WS.WebApi.Controllers
                         Email = Register.UserName
                     };
 
-                    var result = await _aspNetUserMananger.CreateAsync(user, Register.Password);
+                    var result = await _userMananger.CreateAsync(user, Register.Password);
 
                     if (result.Succeeded)
                     {
-                        var appUser = await _aspNetUserMananger.Users
+                        var appUser = await _userMananger.Users
                             .FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
 
-                        var token = GenerateJWToken(appUser).Result;
+                        var token = _jwt.CreateToken(appUser);
                         return Ok(token);
                     }
                 }
@@ -133,40 +160,6 @@ namespace WS.WebApi.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"ERROR {ex.Message}");
             }
-        }
-
-        private async Task<string> GenerateJWToken(AspNetUser user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName)
-            };
-
-            var roles = await _aspNetUserMananger.GetRolesAsync(user);
-
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
-
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
-                _config.GetSection("AppSettings:Token").Value));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var tokenDescription = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = creds
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var token = tokenHandler.CreateToken(tokenDescription);
-
-            return tokenHandler.WriteToken(token);
         }
     }
 }

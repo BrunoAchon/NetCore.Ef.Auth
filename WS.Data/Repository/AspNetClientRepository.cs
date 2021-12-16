@@ -62,9 +62,26 @@ namespace WS.Data.Repository
         {
             foreach (var module in aspNetClient.aspNetClientModules)
             {
-                var moduleConsultado = await _context.aspNetModules.AsNoTracking().FirstAsync(m => m.ModuleId == module.ModuleId);
+                var moduleConsultado = await _context.aspNetModules.FindAsync(module.ModuleId);
                 _context.Entry(module).CurrentValues.SetValues(moduleConsultado);
             }
+
+            // Assim tambem funciona
+            //var modulesConsultados = new List<AspNetClientModule>();
+            //foreach (var module in aspNetClient.aspNetClientModules)
+            //{
+            //    var moduleConsultado = await _context.aspNetModules.FindAsync(module.ModuleId);
+            //    if (moduleConsultado != null)
+            //    {
+            //        modulesConsultados.Add(
+            //            new AspNetClientModule
+            //            {
+            //                ModuleId = moduleConsultado.ModuleId,
+            //                Vencimento = module.Vencimento
+            //            });
+            //    }
+            //}
+            //aspNetClient.aspNetClientModules = modulesConsultados;
         }
         private async Task InsertAspNetClientMenusAsync(AspNetClient aspNetClient)
         {
