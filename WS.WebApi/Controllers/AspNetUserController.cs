@@ -1,19 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using WS.Core.Shared.ModelViews.AspNetUser;
-using AutoMapper;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
-using System.Text;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using WS.Core.Domain;
 using WS.Manager.Interfaces.Managers;
@@ -27,30 +18,15 @@ namespace WS.WebApi.Controllers
     {
         private readonly UserManager<AspNetUser> _userMananger;
         private readonly IAspNetUserManager _aspNetUserMananger;
-        private readonly SignInManager<AspNetUser> _signInManager;
-        private readonly ILogger<AspNetUserController> _logger;
-        private readonly IUserClaimsPrincipalFactory<AspNetUser> _userClaimsPrincipalFactory;
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _config;
         private readonly IJWTService _jwt;
 
         public AspNetUserController(
                         UserManager<AspNetUser> userMananger,
                         IAspNetUserManager aspNetUserMananger,
-                        SignInManager<AspNetUser> signInManager,
-                        ILogger<AspNetUserController> logger,
-                        IUserClaimsPrincipalFactory<AspNetUser> userClaimsPrincipalFactory,
-                        IMapper mapper,
-                        IConfiguration config,
                         IJWTService jwt)
         {
-            _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
             _aspNetUserMananger = aspNetUserMananger;
             _userMananger = userMananger;
-            _signInManager = signInManager;
-            _logger = logger;
-            _mapper = mapper;
-            _config = config;
             _jwt = jwt;
         }
 
