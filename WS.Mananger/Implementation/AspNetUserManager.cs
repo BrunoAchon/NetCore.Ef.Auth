@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -17,12 +18,14 @@ namespace WS.Manager.Implementation
     public class AspNetUserManager : IAspNetUserManager
     {
         private readonly IAspNetUserRepository _aspNetUserRepository;
+        private readonly UserManager<AspNetUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IJWTService _jwt;
 
-        public AspNetUserManager(IAspNetUserRepository aspNetUserRepository, IMapper mapper, IJWTService jwt)
+        public AspNetUserManager(IAspNetUserRepository aspNetUserRepository, UserManager<AspNetUser> userMananger, IMapper mapper, IJWTService jwt)
         {
             _aspNetUserRepository = aspNetUserRepository;
+            _userManager = userMananger;
             _mapper = mapper;
             _jwt = jwt;
         }
@@ -37,62 +40,64 @@ namespace WS.Manager.Implementation
             return _mapper.Map<AspNetUserView>(await _aspNetUserRepository.GetAspNetUserAsync(login));
         }
 
-        public async Task<AspNetUserView> InsertAspNetUserAsync(AspNetUserRegister aspNetUserRegister)
+        public async Task<AspNetUserLogado> ValidaUsuarioEGeraTokenAsync(AspNetUserLogin aspNetUserLogin)
         {
-            var usuario = _mapper.Map<AspNetUser>(aspNetUserRegister);
-            ConverteSenhaEmHash(usuario);
-            return _mapper.Map<AspNetUserView>(await _aspNetUserRepository.InsertAspNetUserAsync(usuario));
-
-        }
-
-        public async Task<AspNetUserView> UpdateAspNetUserAsync(AspNetUser aspNetUser)
-        {
-            ConverteSenhaEmHash(aspNetUser);
-            return _mapper.Map<AspNetUserView>(await _aspNetUserRepository.UpdateAspNetUserAsync(aspNetUser));
-
-        }
-
-        public async Task<AspNetUserLogado> ValidaUsuarioEGeraTokenAsync(AspNetUser aspNetUser)
-        {
-            var usuarioConsultado = await _aspNetUserRepository.GetAspNetUserAsync(aspNetUser.UserName);
+            //var usuarioConsultado = await _aspNetUserRepository.FindByNameAsync(aspNetUserLogin.UserName, CancellationToken.None);
+            var usuarioConsultado = await _userManager.FindByNameAsync(aspNetUserLogin.UserName);
             if (usuarioConsultado == null)
             {
                 return null;
             }
-            if (await ValidaEAtualizaHashAsync(aspNetUser, usuarioConsultado.PasswordHash))
+
+            if (usuarioConsultado != null && !await _userManager.IsLockedOutAsync(usuarioConsultado))
             {
-                var usuarioLogado = _mapper.Map<AspNetUserLogado>(usuarioConsultado);
-                usuarioLogado.Token = _jwt.CreateToken(usuarioConsultado);
-                return usuarioLogado;
+                if (await _userManager.CheckPasswordAsync(usuarioConsultado, aspNetUserLogin.Password))
+                {
+                    await _userManager.ResetAccessFailedCountAsync(usuarioConsultado);
+
+                    var usuarioLogado = _mapper.Map<AspNetUserLogado>(usuarioConsultado);
+                    usuarioLogado.Token = _jwt.CreateToken(usuarioConsultado);
+                    usuarioLogado.UserId = usuarioConsultado.Id;
+                    return usuarioLogado;
+                }
+
+                await _userManager.AccessFailedAsync(usuarioConsultado);
+                if (await _userManager.IsLockedOutAsync(usuarioConsultado))
+                {
+                    //Email deve ser enviando com sugestão de Mudança de Senha!
+                    //var usuarioLogado = await _aspNetUserMananger.MandarEmailRedefinirSenha(user);
+                }
             }
             return null;
         }
 
-        private async Task<bool> ValidaEAtualizaHashAsync(AspNetUser usuario, string hash)
+        public async Task<AspNetUserLogado> RegistraUsuarioEGeraTokenAsync(AspNetUserRegister aspNetUserRegister)
         {
-            var passwordHasher = new PasswordHasher<AspNetUser>();
-            var status = passwordHasher.VerifyHashedPassword(usuario, hash, usuario.PasswordHash);
-            switch (status)
+            var usuarioConsultado = await _aspNetUserRepository.GetAspNetUserAsync(aspNetUserRegister.UserName);
+            if (usuarioConsultado == null)
             {
-                case PasswordVerificationResult.Failed:
-                    return false;
+                usuarioConsultado = new AspNetUser()
+                {
+                    UserName = aspNetUserRegister.UserName,
+                    Email = aspNetUserRegister.UserName
+                };
+                var result = await _userManager.CreateAsync(usuarioConsultado, aspNetUserRegister.Password);
 
-                case PasswordVerificationResult.Success:
-                    return true;
+                if (result.Succeeded)
+                {
+                    var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName == usuarioConsultado.UserName.ToUpper());
+                    var usuarioCriado = _mapper.Map<AspNetUserLogado>(appUser);
+                    usuarioCriado.Token = _jwt.CreateToken(usuarioConsultado);
+                    usuarioCriado.UserId = usuarioConsultado.Id;
 
-                case PasswordVerificationResult.SuccessRehashNeeded:
-                    await UpdateAspNetUserAsync(usuario);
-                    return true;
+                    //var confirmationEmail = Url.Action("ConfirmEmailAddress", "Home",
+                    //    new { token = token, email = user.Email }, Request.Scheme);
 
-                default:
-                    throw new InvalidOperationException();
+                    return usuarioCriado;
+                }
             }
-        }
-        
-        private void ConverteSenhaEmHash(AspNetUser usuario)
-        {
-            var passwordHasher = new PasswordHasher<AspNetUser>();
-            usuario.PasswordHash = passwordHasher.HashPassword(usuario, usuario.PasswordHash);
+            return null;
+
         }
     }
 }

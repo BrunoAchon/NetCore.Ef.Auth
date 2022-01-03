@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using SerilogTimings;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,8 +29,10 @@ namespace WS.WebApi.Controllers
         /// <summary>
         /// Obter lista de todos os clientes
         /// </summary>
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
@@ -46,8 +49,10 @@ namespace WS.WebApi.Controllers
         /// Obter um cliente consultado pelo ID
         /// </summary>
         /// <param name="id" example="1">Id do cliente</param>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
@@ -68,8 +73,10 @@ namespace WS.WebApi.Controllers
         /// Inserir um novo cliente
         /// </summary>
         /// <param name="aspNetClientNovo"></param>
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(AspNetClientNovo aspNetClientNovo)
@@ -89,8 +96,10 @@ namespace WS.WebApi.Controllers
         /// </summary>
         /// <param name="aspNetClientAlterar"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(AspNetClientAlterar aspNetClientAlterar)
@@ -112,8 +121,10 @@ namespace WS.WebApi.Controllers
         /// <param name="id" example="1">Id do cliente</param>
         /// <remarks>Ao excluir um cliente o mesmo perderá todos os acessos aos serviços do software,
         /// use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(AspNetClientView), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)

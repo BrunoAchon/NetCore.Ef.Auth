@@ -72,13 +72,18 @@
             <summary>
             Autenticação de Login de Usuário
             </summary>
-            <param name="Login"></param>
+            <param name="aspNetUserLogin"></param>
         </member>
-        <member name="M:WS.WebApi.Controllers.AspNetUserController.Register(WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister)">
+        <member name="M:WS.WebApi.Controllers.AspNetUserController.Get">
             <summary>
-            Criação de Login de Usuário
+            Retorna dados do usuario
             </summary>
-            <param name="Register"></param>
+        </member>
+        <member name="M:WS.WebApi.Controllers.AspNetUserController.Post(WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister)">
+            <summary>
+            Criar Usuário
+            </summary>
+            <param name="aspNetUserRegister"></param>
         </member>
     </members>
 </doc>

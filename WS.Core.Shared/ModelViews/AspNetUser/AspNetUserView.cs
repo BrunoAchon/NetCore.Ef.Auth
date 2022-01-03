@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WS.Core.Shared.ModelViews.AspNetUser
 {
@@ -9,27 +7,27 @@ namespace WS.Core.Shared.ModelViews.AspNetUser
         /// <summary>
         /// Identificador do Usuário
         /// </summary>
-        /// <example>7075</example>>
+        /// <example>1</example>>
         public int UserId { get; set; }
         /// <summary>
         /// login do usuário
         /// </summary>
-        /// <example>bruno.achon</example>>
+        /// <example>email ou login</example>>
         public string UserName { get; set; }
         /// <summary>
         /// login do usuário Normalizado
         /// </summary>
-        /// <example>BRUNO.ACHON</example>>
+        /// <example>email ou login</example>>
         public string NormalizedUserName { get; set; }
         /// <summary>
         /// Email do usuário
         /// </summary>
-        /// <example>brunoachon@cldsbc.com.br</example>>
+        /// <example>email@provedor.com.br</example>>
         public string Email { get; set; }
         /// <summary>
         /// Email do usuário Normalizado
         /// </summary>
-        /// <example>BRUNOACHON@CLDSBC.COM.BR</example>>
+        /// <example>EMAIL@PROVEDOR.COM.BR</example>>
         public string NormalizedEmail { get; set; }
         /// <summary>
         /// Usuário confirmou o email
@@ -66,16 +64,6 @@ namespace WS.Core.Shared.ModelViews.AspNetUser
         /// </summary>
         /// <example>Null</example>>
         public DateTimeOffset LockoutEnd { get; set; }
-        /// <summary>
-        /// Ainda não sei oque é
-        /// </summary>
-        /// <example>Pesquisar oque é</example>>
-        public bool SecurityStamp { get; set; }
-        /// <summary>
-        /// Ainda não sei oque é
-        /// </summary>
-        /// <example>Pesquisar oque é</example>>
-        public bool ConcurrencyStamp { get; set; }
 
         public object Clone()
         {

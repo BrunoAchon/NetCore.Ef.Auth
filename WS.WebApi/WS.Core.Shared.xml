@@ -364,7 +364,7 @@
             <summary>
             login do usuário
             </summary>
-            <example>bruno.achon</example>>
+            <example>email ou login</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogado.Token">
             <summary>
@@ -376,7 +376,7 @@
             <summary>
             Login do usuário
             </summary>
-            <example>bruno.achon</example>>
+            <example>email ou login</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserLogin.Password">
             <summary>
@@ -386,15 +386,9 @@
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.UserName">
             <summary>
-            login do usuário
+            Login do usuário
             </summary>
-            <example>bruno.achon</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.NormalizedUserName">
-            <summary>
-            login do usuário Normalizado
-            </summary>
-            <example>BRUNO.ACHON</example>>
+            <example>email ou login</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserRegister.Password">
             <summary>
@@ -406,31 +400,31 @@
             <summary>
             Identificador do Usuário
             </summary>
-            <example>7075</example>>
+            <example>1</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.UserName">
             <summary>
             login do usuário
             </summary>
-            <example>bruno.achon</example>>
+            <example>email ou login</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.NormalizedUserName">
             <summary>
             login do usuário Normalizado
             </summary>
-            <example>BRUNO.ACHON</example>>
+            <example>email ou login</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.Email">
             <summary>
             Email do usuário
             </summary>
-            <example>brunoachon@cldsbc.com.br</example>>
+            <example>email@provedor.com.br</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.NormalizedEmail">
             <summary>
             Email do usuário Normalizado
             </summary>
-            <example>BRUNOACHON@CLDSBC.COM.BR</example>>
+            <example>EMAIL@PROVEDOR.COM.BR</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.EmailConfirmed">
             <summary>
@@ -473,18 +467,6 @@
             Tempo restante de bloqueio da conta
             </summary>
             <example>Null</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.SecurityStamp">
-            <summary>
-            Ainda não sei oque é
-            </summary>
-            <example>Pesquisar oque é</example>>
-        </member>
-        <member name="P:WS.Core.Shared.ModelViews.AspNetUser.AspNetUserView.ConcurrencyStamp">
-            <summary>
-            Ainda não sei oque é
-            </summary>
-            <example>Pesquisar oque é</example>>
         </member>
     </members>
 </doc>

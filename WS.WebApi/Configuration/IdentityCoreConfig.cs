@@ -19,14 +19,14 @@ namespace WS.WebApi.Configuration
             services.AddIdentityCore<AspNetUser>(options =>
             {
                 // options.SignIn.RequireConfirmedEmail = true;
-
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 4;
 
-                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0,5,0);
                 options.Lockout.AllowedForNewUsers = true;
             })
             .AddRoles<AspNetRole>()

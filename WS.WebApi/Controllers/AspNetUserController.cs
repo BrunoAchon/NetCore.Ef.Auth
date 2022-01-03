@@ -16,126 +16,102 @@ namespace WS.WebApi.Controllers
     [ApiController]
     public class AspNetUserController : ControllerBase
     {
-        private readonly UserManager<AspNetUser> _userMananger;
         private readonly IAspNetUserManager _aspNetUserMananger;
         private readonly IJWTService _jwt;
 
-        public AspNetUserController(
-                        UserManager<AspNetUser> userMananger,
-                        IAspNetUserManager aspNetUserMananger,
-                        IJWTService jwt)
+        /*
+         * Para fazer testes no swagger é necessário ter o token de usuario logado.
+         * Para inserir um token Use o metodo de Login (logue) para pegar o token
+         * Após pegar o token clique no botão authorizer e insira "Barrer " + "SeuToken"
+         */
+
+
+        public AspNetUserController(IAspNetUserManager aspNetUserMananger,IJWTService jwt)
         {
             _aspNetUserMananger = aspNetUserMananger;
-            _userMananger = userMananger;
             _jwt = jwt;
         }
 
         /// <summary>
         /// Autenticação de Login de Usuário
         /// </summary>
-        /// <param name="Login"></param>
-        [HttpPost]
+        /// <param name="aspNetUserLogin"></param>
+        //[HttpGet] // Manter como Get para o ambiente de produção
+        [HttpPost] // usar somente para testes. pois o swagger nao deve exibir essas informações
         [Route("Login")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Login([FromBody] AspNetUserLogin Login)
+        public async Task<IActionResult> Login([FromBody] AspNetUserLogin aspNetUserLogin)
         {
-            try
+            var usuarioLogado = await _aspNetUserMananger.ValidaUsuarioEGeraTokenAsync(aspNetUserLogin);
+            if (usuarioLogado != null)
             {
-                var user = await _userMananger.FindByNameAsync(Login.UserName);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    if (user != null && !await _userMananger.IsLockedOutAsync(user))
-                    {
-                        if (await _userMananger.CheckPasswordAsync(user, Login.Password))
-                        {
-                            await _userMananger.ResetAccessFailedCountAsync(user);
-
-                            var appUser = await _userMananger.Users
-                                    .FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
-
-                            var usuarioLogado = await _aspNetUserMananger.ValidaUsuarioEGeraTokenAsync(user);
-                            if (usuarioLogado != null)
-                            {
-                                return Ok(usuarioLogado);
-                            }
-                        }
-                        else
-                        {
-                            await _userMananger.AccessFailedAsync(user);
-                            if (await _userMananger.IsLockedOutAsync(user))
-                            {
-                                //Email deve ser enviando com sugestão de Mudança de Senha!
-                                //var usuarioLogado = await _aspNetUserMananger.MandarEmailRedefinirSenha(user);
-                            }
-                            UnauthorizedObjectResult unauthorizedObjectResult = new UnauthorizedObjectResult(new
-                            {
-                                status = "UNAUTHORIZED",
-                                message = "Usuário temporáriamente bloqueado.",
-                                situation = "O usuário foi bloqueado por excesso de tentativas mal sucedidas durante o login."
-                            });
-                            return Unauthorized(unauthorizedObjectResult);
-                        }
-                    }
-                    return Unauthorized();
-                }
+                return Ok(usuarioLogado);
             }
-            catch (Exception ex)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"ERROR {ex.Message}");
-            }
+            return Unauthorized();
         }
+
         /// <summary>
-        /// Criação de Login de Usuário
+        /// Retorna dados do usuario
         /// </summary>
-        /// <param name="Register"></param>
+        [Authorize]
+        [HttpGet]
+        [ProducesResponseType(typeof(AspNetUserView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get()
+        {
+            string login = User.Identity.Name;
+            var usuario = await _aspNetUserMananger.GetAspNetUserAsync(login);
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }
+            return NotFound();
+        }
+
+        /// <summary>
+        /// Criar Usuário
+        /// </summary>
+        /// <param name="aspNetUserRegister"></param>
+        [Authorize]
         [HttpPost]
-        [Route("Register")]
-        [AllowAnonymous]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AspNetUserView), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Register(AspNetUserRegister Register)
+        public async Task<IActionResult> Post(AspNetUserRegister aspNetUserRegister)
         {
-            try
+            var usuarioLogado = await _aspNetUserMananger.RegistraUsuarioEGeraTokenAsync(aspNetUserRegister);
+            if (usuarioLogado != null)
             {
-                var user = await _userMananger.FindByNameAsync(Register.UserName);
-
-                if (user == null)
-                {
-                    user = new AspNetUser
-                    {
-                        UserName = Register.UserName,
-                        Email = Register.UserName
-                    };
-
-                    var result = await _userMananger.CreateAsync(user, Register.Password);
-
-                    if (result.Succeeded)
-                    {
-                        var appUser = await _userMananger.Users
-                            .FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
-
-                        var token = _jwt.CreateToken(appUser);
-                        return Ok(token);
-                    }
-                }
-
-                return Unauthorized();
+                return CreatedAtAction(nameof(Get), new { login = aspNetUserRegister.UserName }, aspNetUserRegister);
             }
-            catch (Exception ex)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"ERROR {ex.Message}");
-            }
+            return Unauthorized();
         }
+        /// <summary>
+        /// Alterar um Usuário existente
+        /// </summary>
+        /// <param name="aspNetUser"></param>
+        /// <returns></returns>
+        //[Authorize]
+        //[HttpPut]
+        //[ProducesResponseType(typeof(AspNetUserView), StatusCodes.Status200OK)]
+        //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        //public async Task<IActionResult> Put(AspNetUser aspNetUser)
+        //{
+        //    AspNetUserView aspNetUserAtualizado;
+        //    aspNetUserAtualizado = await _aspNetUserMananger.UpdateAspNetUserAsync(aspNetUser);
+        //    if (aspNetUserAtualizado == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(aspNetUserAtualizado);
+        //}
     }
 }

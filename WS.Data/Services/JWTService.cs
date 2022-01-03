@@ -27,7 +27,9 @@ namespace WS.Data.Services
             var key = Encoding.ASCII.GetBytes(_configuration.GetSection("JWT:Secret").Value);
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, aspNetUser.UserName)
+                new Claim(ClaimTypes.NameIdentifier, aspNetUser.Id.ToString()),
+                new Claim(ClaimTypes.Name, aspNetUser.UserName),
+                new Claim(ClaimTypes.Authentication, aspNetUser.PasswordHash)
             };
 
             claims.AddRange(aspNetUser.aspNetUserRoles.Select(p => new Claim(ClaimTypes.Role, p.aspNetRole.Name)));

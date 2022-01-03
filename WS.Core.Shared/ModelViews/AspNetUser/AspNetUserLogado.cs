@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WS.Core.Shared.ModelViews.AspNetUser
+﻿namespace WS.Core.Shared.ModelViews.AspNetUser
 {
     public class AspNetUserLogado
     {
@@ -14,7 +10,7 @@ namespace WS.Core.Shared.ModelViews.AspNetUser
         /// <summary>
         /// login do usuário
         /// </summary>
-        /// <example>bruno.achon</example>>
+        /// <example>email ou login</example>>
         public string UserName { get; set; }
         /// <summary>
         /// TokenDeValidacao

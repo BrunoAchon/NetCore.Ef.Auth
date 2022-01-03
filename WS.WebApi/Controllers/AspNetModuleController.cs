@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SerilogTimings;
@@ -25,8 +26,10 @@ namespace WS.WebApi.Controllers
         /// <summary>
         /// Retorna todos os Modulos cadastrados na base
         /// </summary>
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
@@ -44,8 +47,10 @@ namespace WS.WebApi.Controllers
         /// Retorna um Modulo consultado pelo ID
         /// </summary>
         /// <param name="id" example="1">Id do Modulo</param>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
@@ -67,8 +72,10 @@ namespace WS.WebApi.Controllers
         /// Inserir um novo Modulo
         /// </summary>
         /// <param name="aspNetModuleNovo"></param>
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(AspNetModuleNovo aspNetModuleNovo)
         {
@@ -87,8 +94,10 @@ namespace WS.WebApi.Controllers
         /// </summary>
         /// <param name="aspNetModuleAlterar"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(AspNetModuleAlterar aspNetModuleAlterar)
@@ -110,8 +119,10 @@ namespace WS.WebApi.Controllers
         /// <param name="id" example="1">Id do Modulee</param>
         /// <remarks>Ao excluir um Modulo o mesmo será replicado aos serviços do software,
         /// use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)

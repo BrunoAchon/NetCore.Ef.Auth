@@ -12,14 +12,11 @@ namespace WS.Manager.Interfaces.Managers
 {
     public interface IAspNetUserManager
     {
-        Task<IEnumerable<AspNetUserView>> GetAspNetUserAsync();
 
+        Task<IEnumerable<AspNetUserView>> GetAspNetUserAsync();
         Task<AspNetUserView> GetAspNetUserAsync(string login);
 
-        Task<AspNetUserView> InsertAspNetUserAsync(AspNetUserRegister usuario);
-
-        Task<AspNetUserView> UpdateAspNetUserAsync(AspNetUser usuario);
-
-        Task<AspNetUserLogado> ValidaUsuarioEGeraTokenAsync(AspNetUser usuario);
+        Task<AspNetUserLogado> ValidaUsuarioEGeraTokenAsync(AspNetUserLogin usuario);
+        Task<AspNetUserLogado> RegistraUsuarioEGeraTokenAsync(AspNetUserRegister usuario);
     }
 }

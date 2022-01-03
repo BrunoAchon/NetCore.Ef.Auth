@@ -53,6 +53,8 @@ namespace WS.Data.Repository
         public async Task<AspNetUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             return await _context.aspNetUsers
+                            .Include(ur => ur.aspNetUserRoles)
+                              .ThenInclude(r => r.aspNetRole)
                             .AsNoTracking().SingleOrDefaultAsync(p => p.NormalizedUserName == normalizedUserName);
         }
 
@@ -68,7 +70,7 @@ namespace WS.Data.Repository
                 {
                     UserId = user.Id,
                     userName = user.UserName,
-                    normalizedUserName = user.NormalizedUserName,
+                    normalizedUserName = user.UserName.Normalize().ToUpper(),
                     passwordHash = user.PasswordHash
                 });
             return IdentityResult.Success;
