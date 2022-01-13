@@ -17,7 +17,7 @@ namespace WS.Core.Shared.ModelViews.AspNetModule
         /// <summary>
         /// Titulo do Modulo
         /// </summary>
-        /// <example>Cadastros</example>>
+        /// <example>Modulo</example>>
         public string Module { get; set; }
 
         /// <summary>

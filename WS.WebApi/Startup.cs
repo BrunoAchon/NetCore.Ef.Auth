@@ -32,7 +32,7 @@ namespace WS.WebApi
 
             services.AddDependencyInjectionConfiguration();
 
-            services.AddSwaggerConfiguration();
+            services.AddSwaggerConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

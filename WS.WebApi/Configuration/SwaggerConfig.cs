@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
@@ -13,7 +14,7 @@ namespace WS.WebApi.Configuration
 {
     public static class SwaggerConfig
     {
-        public static void AddSwaggerConfiguration(this IServiceCollection services)
+        public static void AddSwaggerConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(c =>
             {
@@ -22,17 +23,17 @@ namespace WS.WebApi.Configuration
                     {
                         Title = "WebSgm - Sistema de Gestão de Multas.",
                         Version = "v1",
-                        Description = "Api geral do sistema de gestão de multas.",
+                        Description = "Api geral do sistema de gestão de multas."
                     });
-                //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); // ignorar conflito de rotas nas controllers(não usar)
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
-                    Scheme = "bearer",
-                    BearerFormat = "JWT",
-                    Name = "JWT Authentication",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Description = @"Coloque seu token bearer JWT na caixa de texto abaixo!",
+                    Scheme = configuration.GetSection("securityDefinitions:Bearer:Scheme").Value,
+                    BearerFormat = configuration.GetSection("securityDefinitions:Bearer:BearerFormat").Value,
+                    Name = configuration.GetSection("securityDefinitions:Bearer:Name").Value,
+                    In = (ParameterLocation)Enum.Parse(typeof(ParameterLocation),configuration.GetSection("securityDefinitions:Bearer:In").Value),
+                    Type = (SecuritySchemeType)Enum.Parse(typeof(SecuritySchemeType), configuration.GetSection("securityDefinitions:Bearer:Type").Value),
+                    Description = configuration.GetSection("securityDefinitions:Bearer:Description").Value,
 
                     Reference = new OpenApiReference
                     {

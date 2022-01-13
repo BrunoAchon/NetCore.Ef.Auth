@@ -97,7 +97,7 @@
             <summary>
             Titulo do Modulo
             </summary>
-            <example>Cadastros</example>>
+            <example>Modulo</example>>
         </member>
         <member name="T:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientAlterar">
             <summary>
@@ -119,26 +119,26 @@
             <summary>
             Orgao autuador do cliente
             </summary>
-            <example>7075</example>>
+            <example>0000</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.RazaoSocial">
             <summary>
             Razao Social do cliente 
             </summary>
-            <example>São Bernardo do Campo</example>>
+            <example>Razao Social do cliente</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Server">
             <summary>
             Servidor a qual a aplicação deve olhar para buscar os dados do cliente 
             Sever: IP ou SERVENAME
             </summary>
-            <example>192.168.0.1 </example>>
+            <example>225.356.512.123</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Banco">
             <summary>
             Banco de dados a qual a aplicação deve olhar para buscar os dados do cliente 
             </summary>
-            <example>DBGM07075</example>>
+            <example>DDSN0000</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientNovo.Vencimento">
             <summary>
@@ -160,32 +160,32 @@
             <summary>
             Identificador do Cliente
             </summary>
-            <example>7075</example>>
+            <example>0000</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Orgao">
             <summary>
             Orgao autuador do cliente
             </summary>
-            <example>7075</example>>
+            <example>0000</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.RazaoSocial">
             <summary>
             Razao Social do cliente 
             </summary>
-            <example>São Bernardo do Campo</example>>
+            <example>Razao Social do cliente</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Server">
             <summary>
             Servidor a qual a aplicação deve olhar para buscar os dados do cliente 
             Sever: IP ou SERVENAME
             </summary>
-            <example>192.168.0.1 </example>>
+            <example>162.551.882.123</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Banco">
             <summary>
             Banco de dados a qual a aplicação deve olhar para buscar os dados do cliente 
             </summary>
-            <example>DBGM07075</example>>
+            <example>DDSN0000</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetClient.AspNetClientView.Vencimento">
             <summary>
@@ -213,7 +213,7 @@
             <summary>
             Titulo do Menu
             </summary>
-            <example>Laudos</example>>
+            <example>Menu</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuNovo.Ordem">
             <summary>
@@ -231,7 +231,7 @@
             <summary>
             Titulo do Menu
             </summary>
-            <example>Laudos</example>>
+            <example>Menu</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetMenu.AspNetMenuView.Ordem">
             <summary>
@@ -254,7 +254,7 @@
             <summary>
             Titulo do Modulo
             </summary>
-            <example>Cadastros</example>>
+            <example>Modulo</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleAlterar.ImgMenu">
             <summary>
@@ -283,7 +283,7 @@
             <summary>
             Titulo do Modulo
             </summary>
-            <example>Cadastros</example>>
+            <example>Modulo</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleBase.ImgMenu">
             <summary>
@@ -306,7 +306,7 @@
             <summary>
             Titulo do Modulo
             </summary>
-            <example>Cadastros</example>>
+            <example>Modulo</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleNovo.ImgMenu">
             <summary>
@@ -335,7 +335,7 @@
             <summary>
             Titulo do Modulo
             </summary>
-            <example>Cadastros</example>>
+            <example>Modulo</example>>
         </member>
         <member name="P:WS.Core.Shared.ModelViews.AspNetModule.AspNetModuleView.ImgMenu">
             <summary>

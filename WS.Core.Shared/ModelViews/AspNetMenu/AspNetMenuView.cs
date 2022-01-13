@@ -14,7 +14,7 @@ namespace WS.Core.Shared.ModelViews.AspNetMenu
         /// <summary>
         /// Titulo do Menu
         /// </summary>
-        /// <example>Laudos</example>>
+        /// <example>Menu</example>>
         public string Menu { get; set; }
 
         /// <summary>

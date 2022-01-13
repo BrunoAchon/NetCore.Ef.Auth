@@ -22,7 +22,7 @@ namespace WS.Core.Shared.ModelViews.AspNetClientModule
         /// <summary>
         /// Titulo do Modulo
         /// </summary>
-        /// <example>Cadastros</example>>
+        /// <example>Modulo</example>>
         public AspNetModuleBase aspNetModule { get ; set; }
 
         public object Clone()

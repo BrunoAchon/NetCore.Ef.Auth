@@ -25,7 +25,6 @@ namespace WS.WebApi.Controllers
          * Após pegar o token clique no botão authorizer e insira "Barrer " + "SeuToken"
          */
 
-
         public AspNetUserController(IAspNetUserManager aspNetUserMananger,IJWTService jwt)
         {
             _aspNetUserMananger = aspNetUserMananger;
@@ -36,8 +35,7 @@ namespace WS.WebApi.Controllers
         /// Autenticação de Login de Usuário
         /// </summary>
         /// <param name="aspNetUserLogin"></param>
-        //[HttpGet] // Manter como Get para o ambiente de produção
-        [HttpPost] // usar somente para testes. pois o swagger nao deve exibir essas informações
+        [HttpPost] 
         [Route("Login")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status200OK)]
