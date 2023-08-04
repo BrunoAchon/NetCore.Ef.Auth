@@ -36,7 +36,7 @@ namespace WS.WebApi.Controllers
         /// </summary>
         /// <param name="aspNetUserLogin"></param>
         [HttpPost] 
-        [Route("Login")]
+        [Route("Authenticate")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -76,7 +76,7 @@ namespace WS.WebApi.Controllers
         /// Criar Usuário
         /// </summary>
         /// <param name="aspNetUserRegister"></param>
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(AspNetUserView), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]

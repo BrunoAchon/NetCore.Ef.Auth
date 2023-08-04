@@ -75,6 +75,7 @@ namespace WS.WebApi.Controllers
         [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(AspNetModuleNovo aspNetModuleNovo)
@@ -97,6 +98,7 @@ namespace WS.WebApi.Controllers
         [Authorize]
         [HttpPut]
         [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -121,7 +123,7 @@ namespace WS.WebApi.Controllers
         /// use esta opção somente se cadastrar algo errado e deseja excluir para fazer novamente</remarks>
         [Authorize]
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(AspNetModuleView), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

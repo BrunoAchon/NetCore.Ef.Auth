@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Dev\WebSgm\WS.WebApi\WS.Core.Shared.xml</DocumentationFile>
+    <DocumentationFile>H:\8 - Dev\WebSgm\WS.WebApi\WS.Core.Shared.xml</DocumentationFile>
     <NoWarn>1701;1702; 1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\Dev\WebSgm\WS.WebApi\WS.Core.Shared.xml</DocumentationFile>
+    <DocumentationFile>H:\8 - Dev\WebSgm\WS.WebApi\WS.Core.Shared.xml</DocumentationFile>
     <NoWarn>1701;1702; 1591</NoWarn>
   </PropertyGroup>
 

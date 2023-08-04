@@ -11,9 +11,17 @@ namespace WS.Manager.Mappings.Novo
     {
         public AspNetUserMappingProfile()
         {
-            CreateMap<AspNetUser, AspNetUserView>().ReverseMap();
+            CreateMap<AspNetUser, AspNetUserView>().ReverseMap()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+            CreateMap<AspNetUser, AspNetUserView>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
+
+            CreateMap<AspNetUser, AspNetUserLogado>().ReverseMap()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+            CreateMap<AspNetUser, AspNetUserLogado>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
+
             CreateMap<AspNetUser, AspNetUserRegister>().ReverseMap();
-            CreateMap<AspNetUser, AspNetUserLogado>().ReverseMap();
         }
     }
 }

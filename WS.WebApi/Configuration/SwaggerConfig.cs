@@ -21,9 +21,9 @@ namespace WS.WebApi.Configuration
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "WebSgm - Sistema de Gestão de Multas.",
+                        Title = "WebSgms - Api de Gestão de Micro Serviços.",
                         Version = "v1",
-                        Description = "Api geral do sistema de gestão de multas."
+                        Description = "Api geral do sistema de gestão de micro serviços."
                     });
                 //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); // ignorar conflito de rotas nas controllers(não usar)
                 var jwtSecurityScheme = new OpenApiSecurityScheme

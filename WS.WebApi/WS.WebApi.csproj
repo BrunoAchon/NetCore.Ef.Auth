@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Dev\WebSgm\WS.WebApi\WS.WebApi.xml</DocumentationFile>
+    <DocumentationFile>H:\8 - Dev\WebSgm\WS.WebApi\WS.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DocumentationFile>E:\Dev\WebSgm\WS.WebApi\WS.WebApi.xml</DocumentationFile>
+    <DocumentationFile>H:\8 - Dev\WebSgm\WS.WebApi\WS.WebApi.xml</DocumentationFile>
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 
@@ -51,6 +52,12 @@
     <ProjectReference Include="..\WS.Data\WS.Data.csproj" />
     <ProjectReference Include="..\WS.Mananger\WS.Manager.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 
 </Project>
