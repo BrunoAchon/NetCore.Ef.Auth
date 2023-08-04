@@ -14,7 +14,8 @@ namespace WS.WebApi.Configuration
         public static void AddDataBaseConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<WsContext>(options => options
-            .UseSqlServer(configuration.GetConnectionString("WsConnection"))
+            //.UseSqlServer(configuration.GetConnectionString("WsConnection"))
+            .UseSqlite(configuration.GetConnectionString("ConnectionLite"))
             .EnableSensitiveDataLogging());
 
             services.AddScoped<IApplicationWriteDbConnection, ApplicationWriteDbConnection>();
