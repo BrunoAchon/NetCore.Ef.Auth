@@ -21,9 +21,9 @@ namespace WS.WebApi.Configuration
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "WebSgms - Api de Gestão de Micro Serviços.",
-                        Version = "v1",
-                        Description = "Api geral do sistema de gestão de micro serviços."
+                        Title = "Api de Autenticação de Micro Serviços",
+                        Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                        Description = "EFCore 5.0.1 - Api geral de autenticação de micro serviços."
                     });
                 //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); // ignorar conflito de rotas nas controllers(não usar)
                 var jwtSecurityScheme = new OpenApiSecurityScheme
