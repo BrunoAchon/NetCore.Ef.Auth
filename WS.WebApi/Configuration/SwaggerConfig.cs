@@ -66,7 +66,7 @@ namespace WS.WebApi.Configuration
             {
                 c.DocExpansion(DocExpansion.None);
                 c.RoutePrefix = string.Empty;
-                c.SwaggerEndpoint("./swagger/v1/swagger.json", "WS v1");
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "WS v1");
                 //c.SwaggerEndpoint("./v1/swagger.json", "WS V1");
             });
         }
